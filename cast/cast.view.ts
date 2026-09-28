@@ -185,7 +185,8 @@ namespace $.$$ {
 				case 'still':
 					speed *= 0.45
 					spread = Math.max( spread, 0.5 )
-					rate *= 0.5
+					rate *= 0.8
+					life = 1.3
 					if( spell.lift < 0 ) {
 						dir_y = 0.1
 						speed *= 0.35
@@ -311,7 +312,8 @@ namespace $.$$ {
 		flow_size() {
 			const spell = this.spell()
 			const size = this.look().size
-			const k = ( 0.75 + spell.power * 0.35 ) * ( this.tune().form === 'bolt' ? 2.2 : 1 )
+			const form = this.tune().form
+			const k = ( 0.75 + spell.power * 0.35 ) * ( form === 'bolt' ? 2.2 : form === 'still' ? 1.5 : 1 )
 			return this.tune().form === 'dust'
 				? new Float32Array([ size[ 0 ] * k * 0.4, size[ 0 ] * k * 1.4 ])
 				: new Float32Array([ size[ 0 ] * k, size[ 1 ] * k ])
