@@ -2,6 +2,7 @@ $bog_atelier_workshop $mol_view
 	sub /
 		<= Stage $bog_atelier_stage
 			lines? <=> lines? /
+			guide <= guide /
 			cast_key <= cast_key 0
 		<= Side $mol_list
 			rows /
@@ -33,6 +34,10 @@ $bog_atelier_workshop $mol_view
 	Break $mol_button_major
 		title @ \Разорвать кольцо
 		click? <=> break? null
+	Share $mol_button_copy
+		title @ \Ссылка на заготовку
+		hint @ \Скопировать ссылку: глиф откроется с разрывом в кольце, и получатель замкнёт его сам
+		text <= share_link \
 	Ring $mol_button_minor
 		title @ \Кольцо
 		click? <=> stamp_ring? null

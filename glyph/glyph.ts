@@ -210,7 +210,7 @@ namespace $ {
 
 	export function $bog_atelier_glyph_circle( gap = 0, gap_at = -Math.PI / 2, r = 1 ) {
 		const from = gap_at + gap / 2
-		return $bog_atelier_ink_arc( 0, 0, r, from, from + Math.PI * 2 - gap, 120 )
+		return $bog_atelier_ink_arc( 0, 0, r, from, from + Math.PI * 2 - gap, 240 )
 	}
 
 	export function $bog_atelier_glyph_read( lines: readonly $bog_atelier_ink_line[] ): $bog_atelier_glyph_reading {

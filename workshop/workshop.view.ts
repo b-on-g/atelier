@@ -7,6 +7,31 @@ namespace $.$$ {
 			return this.$.$mol_state_local.value( 'bog_atelier_sheet', next ) ?? []
 		}
 
+		auto() {
+			const code = this.$.$mol_state_arg.value( 'glyph' )
+			if( !code ) return
+			this.$.$mol_state_arg.value( 'glyph', null )
+			this.lines( $bog_atelier_share_unpack( code ) )
+		}
+
+		@ $mol_mem
+		guide() {
+			return this.lines().length ? [] : [ $bog_atelier_glyph_circle( 0, 0, 0.95 ) ]
+		}
+
+		@ $mol_mem
+		share_link() {
+			const reading = this.reading()
+			const ring = reading.ring
+			if( !ring ) return ''
+			const lines = reading.closed
+				? $bog_atelier_share_open( this.lines(), reading.ring_lines, ring.x, ring.y )
+				: this.lines()
+			const code = $bog_atelier_share_pack( lines.map( line => $bog_atelier_share_thin( line ) ) )
+			const here = this.$.$mol_dom_context.location
+			return `${ here.origin }${ here.pathname }#!screen=sheet/glyph=${ code }`
+		}
+
 		reading(): $bog_atelier_glyph_reading {
 			return this.Stage().reading()
 		}
@@ -43,9 +68,10 @@ namespace $.$$ {
 
 		@ $mol_mem
 		tools() {
+			const share = this.reading().ring ? [ this.Share() ] : []
 			return this.closed()
-				? [ this.Break(), this.Undo(), this.Clear() ]
-				: [ this.Ring(), this.Undo(), this.Clear() ]
+				? [ this.Break(), ... share, this.Undo(), this.Clear() ]
+				: [ this.Ring(), ... share, this.Undo(), this.Clear() ]
 		}
 
 		@ $mol_mem
