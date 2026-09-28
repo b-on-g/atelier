@@ -874,6 +874,13 @@ $mol_text_span $mol_paragraph
 		^
 		mol_text_type <= type \
 
+$bog_atelier_preview $mol_svg_root
+	view_box \-1.1 -1.1 2.2 2.2
+	lines /
+	sub /
+		<= Ink $mol_svg_path
+			geometry <= geometry \
+
 $mol_text_list $mol_text
 	auto_scroll null
 	attr *
@@ -894,7 +901,11 @@ $bog_atelier_grimoire $mol_list
 			text <= intro @ \
 				\Глиф состоит из трёх частей. **Кольцо** держит магию: пока оно разомкнуто, ничего не происходит, стоит замкнуть — чернила оживают. **Сигил** в центре выбирает стихию. **Знаки** по краю кольца говорят, куда и как она пойдёт.
 				\
-				\Метка «канон» значит, что символ и его действие есть в манге. «Домысел» — символ встречается у фанатов, а действие додумано.
+				\Формы и действие символов взяты из глав манги, номер главы указан в описании. Названия знаков придумали фанаты на вики: в самой манге их почти не называют.
+		<= Spells_title $mol_paragraph
+			title @ \Заклинания из манги
+		<= Spells $mol_list
+			rows <= spell_rows /
 		<= Sigils_title $mol_paragraph
 			title @ \Сигилы
 		<= Sigils $mol_list
@@ -917,6 +928,23 @@ $bog_atelier_grimoire $mol_list
 								title <= entry_canon* \
 					<= Note* $mol_paragraph
 						title <= entry_note* \
+	Spell* $mol_link
+		arg *
+			screen \course
+			lesson <= spell_id* \
+		sub /
+			<= Spell_preview* $bog_atelier_preview
+				lines <= spell_lines* /
+			<= Spell_text* $mol_list
+				rows /
+					<= Spell_name* $mol_view
+						sub /
+							<= Spell_title* $mol_paragraph
+								title <= spell_title* \
+							<= Spell_source* $mol_paragraph
+								title <= spell_source* \
+					<= Spell_note* $mol_paragraph
+						title <= spell_note* \
 	canon_manga @ \канон
 	canon_fan @ \домысел
 

@@ -7632,6 +7632,33 @@ declare namespace $ {
 }
 
 declare namespace $ {
+
+	type $mol_svg_path__geometry_bog_atelier_preview_1 = $mol_type_enforce<
+		ReturnType< $bog_atelier_preview['geometry'] >
+		,
+		ReturnType< $mol_svg_path['geometry'] >
+	>
+	export class $bog_atelier_preview extends $mol_svg_root {
+		geometry( ): string
+		Ink( ): $mol_svg_path
+		view_box( ): string
+		lines( ): readonly(any)[]
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=preview.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_atelier_preview extends $.$bog_atelier_preview {
+        geometry(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
@@ -7665,111 +7692,6 @@ declare namespace $ {
 }
 
 //# sourceMappingURL=list.view.tree.d.ts.map
-declare namespace $ {
-
-	type $mol_text__text_bog_atelier_grimoire_1 = $mol_type_enforce<
-		ReturnType< $bog_atelier_grimoire['intro'] >
-		,
-		ReturnType< $mol_text['text'] >
-	>
-	type $mol_paragraph__title_bog_atelier_grimoire_2 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_list__rows_bog_atelier_grimoire_3 = $mol_type_enforce<
-		ReturnType< $bog_atelier_grimoire['sigil_rows'] >
-		,
-		ReturnType< $mol_list['rows'] >
-	>
-	type $mol_paragraph__title_bog_atelier_grimoire_4 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_list__rows_bog_atelier_grimoire_5 = $mol_type_enforce<
-		ReturnType< $bog_atelier_grimoire['sign_rows'] >
-		,
-		ReturnType< $mol_list['rows'] >
-	>
-	type $bog_atelier_icon__entry_id_bog_atelier_grimoire_6 = $mol_type_enforce<
-		ReturnType< $bog_atelier_grimoire['entry_id'] >
-		,
-		ReturnType< $bog_atelier_icon['entry_id'] >
-	>
-	type $mol_paragraph__title_bog_atelier_grimoire_7 = $mol_type_enforce<
-		ReturnType< $bog_atelier_grimoire['entry_title'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_atelier_grimoire_8 = $mol_type_enforce<
-		ReturnType< $bog_atelier_grimoire['entry_canon'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_atelier_grimoire_9 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_atelier_grimoire_10 = $mol_type_enforce<
-		ReturnType< $bog_atelier_grimoire['entry_note'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_list__rows_bog_atelier_grimoire_11 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_list['rows'] >
-	>
-	type $mol_view__sub_bog_atelier_grimoire_12 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	export class $bog_atelier_grimoire extends $mol_list {
-		intro( ): string
-		Intro( ): $mol_text
-		Sigils_title( ): $mol_paragraph
-		sigil_rows( ): readonly(any)[]
-		Sigils( ): $mol_list
-		Signs_title( ): $mol_paragraph
-		sign_rows( ): readonly(any)[]
-		Signs( ): $mol_list
-		entry_id( id: any): string
-		Icon( id: any): $bog_atelier_icon
-		entry_title( id: any): string
-		Title( id: any): $mol_paragraph
-		entry_canon( id: any): string
-		Canon( id: any): $mol_paragraph
-		Name( id: any): $mol_view
-		entry_note( id: any): string
-		Note( id: any): $mol_paragraph
-		Text( id: any): $mol_list
-		rows( ): readonly(any)[]
-		Entry( id: any): $mol_view
-		canon_manga( ): string
-		canon_fan( ): string
-	}
-	
-}
-
-//# sourceMappingURL=grimoire.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_atelier_grimoire extends $.$bog_atelier_grimoire {
-        sigil_rows(): $mol_view[];
-        sign_rows(): $mol_view[];
-        entry(id: string): $bog_atelier_lexicon_entry;
-        entry_id(id: string): string;
-        entry_title(id: string): string;
-        entry_note(id: string): string;
-        entry_canon(id: string): string;
-    }
-}
-
-declare namespace $ {
-}
-
 declare namespace $ {
     type $bog_atelier_course_sign = readonly [id: string, angle: number, size?: number, inverted?: boolean];
     type $bog_atelier_course_lesson = {
@@ -8008,6 +7930,186 @@ declare namespace $.$$ {
         item_mark(id: string): string;
         item_title(id: string): string;
         pick(id: string): void;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $mol_text__text_bog_atelier_grimoire_1 = $mol_type_enforce<
+		ReturnType< $bog_atelier_grimoire['intro'] >
+		,
+		ReturnType< $mol_text['text'] >
+	>
+	type $mol_paragraph__title_bog_atelier_grimoire_2 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_atelier_grimoire_3 = $mol_type_enforce<
+		ReturnType< $bog_atelier_grimoire['spell_rows'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_paragraph__title_bog_atelier_grimoire_4 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_atelier_grimoire_5 = $mol_type_enforce<
+		ReturnType< $bog_atelier_grimoire['sigil_rows'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_paragraph__title_bog_atelier_grimoire_6 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_atelier_grimoire_7 = $mol_type_enforce<
+		ReturnType< $bog_atelier_grimoire['sign_rows'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $bog_atelier_icon__entry_id_bog_atelier_grimoire_8 = $mol_type_enforce<
+		ReturnType< $bog_atelier_grimoire['entry_id'] >
+		,
+		ReturnType< $bog_atelier_icon['entry_id'] >
+	>
+	type $mol_paragraph__title_bog_atelier_grimoire_9 = $mol_type_enforce<
+		ReturnType< $bog_atelier_grimoire['entry_title'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_paragraph__title_bog_atelier_grimoire_10 = $mol_type_enforce<
+		ReturnType< $bog_atelier_grimoire['entry_canon'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_atelier_grimoire_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_atelier_grimoire_12 = $mol_type_enforce<
+		ReturnType< $bog_atelier_grimoire['entry_note'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_atelier_grimoire_13 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $bog_atelier_preview__lines_bog_atelier_grimoire_14 = $mol_type_enforce<
+		ReturnType< $bog_atelier_grimoire['spell_lines'] >
+		,
+		ReturnType< $bog_atelier_preview['lines'] >
+	>
+	type $mol_paragraph__title_bog_atelier_grimoire_15 = $mol_type_enforce<
+		ReturnType< $bog_atelier_grimoire['spell_title'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_paragraph__title_bog_atelier_grimoire_16 = $mol_type_enforce<
+		ReturnType< $bog_atelier_grimoire['spell_source'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_atelier_grimoire_17 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_atelier_grimoire_18 = $mol_type_enforce<
+		ReturnType< $bog_atelier_grimoire['spell_note'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_atelier_grimoire_19 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_view__sub_bog_atelier_grimoire_20 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__arg_bog_atelier_grimoire_21 = $mol_type_enforce<
+		({ 
+			'screen': string,
+			'lesson': ReturnType< $bog_atelier_grimoire['spell_id'] >,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__sub_bog_atelier_grimoire_22 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	export class $bog_atelier_grimoire extends $mol_list {
+		intro( ): string
+		Intro( ): $mol_text
+		Spells_title( ): $mol_paragraph
+		spell_rows( ): readonly(any)[]
+		Spells( ): $mol_list
+		Sigils_title( ): $mol_paragraph
+		sigil_rows( ): readonly(any)[]
+		Sigils( ): $mol_list
+		Signs_title( ): $mol_paragraph
+		sign_rows( ): readonly(any)[]
+		Signs( ): $mol_list
+		entry_id( id: any): string
+		Icon( id: any): $bog_atelier_icon
+		entry_title( id: any): string
+		Title( id: any): $mol_paragraph
+		entry_canon( id: any): string
+		Canon( id: any): $mol_paragraph
+		Name( id: any): $mol_view
+		entry_note( id: any): string
+		Note( id: any): $mol_paragraph
+		Text( id: any): $mol_list
+		spell_id( id: any): string
+		spell_lines( id: any): readonly(any)[]
+		Spell_preview( id: any): $bog_atelier_preview
+		spell_title( id: any): string
+		Spell_title( id: any): $mol_paragraph
+		spell_source( id: any): string
+		Spell_source( id: any): $mol_paragraph
+		Spell_name( id: any): $mol_view
+		spell_note( id: any): string
+		Spell_note( id: any): $mol_paragraph
+		Spell_text( id: any): $mol_list
+		rows( ): readonly(any)[]
+		Entry( id: any): $mol_view
+		Spell( id: any): $mol_link
+		canon_manga( ): string
+		canon_fan( ): string
+	}
+	
+}
+
+//# sourceMappingURL=grimoire.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_atelier_grimoire extends $.$bog_atelier_grimoire {
+        spell_rows(): $.$mol_link[];
+        spell(id: string): $bog_atelier_course_lesson;
+        spell_id(id: string): string;
+        spell_lines(id: string): number[][];
+        spell_title(id: string): string;
+        spell_source(id: string): string;
+        spell_note(id: string): string;
+        sigil_rows(): $mol_view[];
+        sign_rows(): $mol_view[];
+        entry(id: string): $bog_atelier_lexicon_entry;
+        entry_id(id: string): string;
+        entry_title(id: string): string;
+        entry_note(id: string): string;
+        entry_canon(id: string): string;
     }
 }
 

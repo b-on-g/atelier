@@ -22851,6 +22851,58 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$bog_atelier_preview) = class $bog_atelier_preview extends ($.$mol_svg_root) {
+		geometry(){
+			return "";
+		}
+		Ink(){
+			const obj = new this.$.$mol_svg_path();
+			(obj.geometry) = () => ((this.geometry()));
+			return obj;
+		}
+		view_box(){
+			return "-1.1 -1.1 2.2 2.2";
+		}
+		lines(){
+			return [];
+		}
+		sub(){
+			return [(this.Ink())];
+		}
+	};
+	($mol_mem(($.$bog_atelier_preview.prototype), "Ink"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_atelier_preview extends $.$bog_atelier_preview {
+            geometry() {
+                return this.lines().map(line => $bog_atelier_ink_path(line)).join('');
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_atelier_preview.prototype, "geometry", null);
+        $$.$bog_atelier_preview = $bog_atelier_preview;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("bog/atelier/preview/preview.view.css", "[bog_atelier_preview] {\n\twidth: 6rem;\n\theight: 6rem;\n\tflex: none;\n\tbackground: var(--bog_atelier_paper);\n\tborder-radius: 0.5rem;\n}\n\n[bog_atelier_preview_ink] {\n\tfill: none;\n\tstroke: var(--bog_atelier_ink);\n\tstroke-width: 0.03;\n\tstroke-linecap: round;\n\tstroke-linejoin: round;\n}\n");
+})($ || ($ = {}));
+
+;
 	($.$mol_text_list) = class $mol_text_list extends ($.$mol_text) {
 		type(){
 			return "";
@@ -22898,6 +22950,19 @@ var $;
 		Intro(){
 			const obj = new this.$.$mol_text();
 			(obj.text) = () => ((this.intro()));
+			return obj;
+		}
+		Spells_title(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_atelier_grimoire_Spells_title_title")));
+			return obj;
+		}
+		spell_rows(){
+			return [];
+		}
+		Spells(){
+			const obj = new this.$.$mol_list();
+			(obj.rows) = () => ((this.spell_rows()));
 			return obj;
 		}
 		Sigils_title(){
@@ -22968,9 +23033,56 @@ var $;
 			(obj.rows) = () => ([(this.Name(id)), (this.Note(id))]);
 			return obj;
 		}
+		spell_id(id){
+			return "";
+		}
+		spell_lines(id){
+			return [];
+		}
+		Spell_preview(id){
+			const obj = new this.$.$bog_atelier_preview();
+			(obj.lines) = () => ((this.spell_lines(id)));
+			return obj;
+		}
+		spell_title(id){
+			return "";
+		}
+		Spell_title(id){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.spell_title(id)));
+			return obj;
+		}
+		spell_source(id){
+			return "";
+		}
+		Spell_source(id){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.spell_source(id)));
+			return obj;
+		}
+		Spell_name(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Spell_title(id)), (this.Spell_source(id))]);
+			return obj;
+		}
+		spell_note(id){
+			return "";
+		}
+		Spell_note(id){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.spell_note(id)));
+			return obj;
+		}
+		Spell_text(id){
+			const obj = new this.$.$mol_list();
+			(obj.rows) = () => ([(this.Spell_name(id)), (this.Spell_note(id))]);
+			return obj;
+		}
 		rows(){
 			return [
 				(this.Intro()), 
+				(this.Spells_title()), 
+				(this.Spells()), 
 				(this.Sigils_title()), 
 				(this.Sigils()), 
 				(this.Signs_title()), 
@@ -22982,6 +23094,12 @@ var $;
 			(obj.sub) = () => ([(this.Icon(id)), (this.Text(id))]);
 			return obj;
 		}
+		Spell(id){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ({"screen": "course", "lesson": (this.spell_id(id))});
+			(obj.sub) = () => ([(this.Spell_preview(id)), (this.Spell_text(id))]);
+			return obj;
+		}
 		canon_manga(){
 			return (this.$.$mol_locale.text("$bog_atelier_grimoire_canon_manga"));
 		}
@@ -22990,6 +23108,8 @@ var $;
 		}
 	};
 	($mol_mem(($.$bog_atelier_grimoire.prototype), "Intro"));
+	($mol_mem(($.$bog_atelier_grimoire.prototype), "Spells_title"));
+	($mol_mem(($.$bog_atelier_grimoire.prototype), "Spells"));
 	($mol_mem(($.$bog_atelier_grimoire.prototype), "Sigils_title"));
 	($mol_mem(($.$bog_atelier_grimoire.prototype), "Sigils"));
 	($mol_mem(($.$bog_atelier_grimoire.prototype), "Signs_title"));
@@ -23000,52 +23120,15 @@ var $;
 	($mol_mem_key(($.$bog_atelier_grimoire.prototype), "Name"));
 	($mol_mem_key(($.$bog_atelier_grimoire.prototype), "Note"));
 	($mol_mem_key(($.$bog_atelier_grimoire.prototype), "Text"));
+	($mol_mem_key(($.$bog_atelier_grimoire.prototype), "Spell_preview"));
+	($mol_mem_key(($.$bog_atelier_grimoire.prototype), "Spell_title"));
+	($mol_mem_key(($.$bog_atelier_grimoire.prototype), "Spell_source"));
+	($mol_mem_key(($.$bog_atelier_grimoire.prototype), "Spell_name"));
+	($mol_mem_key(($.$bog_atelier_grimoire.prototype), "Spell_note"));
+	($mol_mem_key(($.$bog_atelier_grimoire.prototype), "Spell_text"));
 	($mol_mem_key(($.$bog_atelier_grimoire.prototype), "Entry"));
+	($mol_mem_key(($.$bog_atelier_grimoire.prototype), "Spell"));
 
-
-;
-"use strict";
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $bog_atelier_grimoire extends $.$bog_atelier_grimoire {
-            sigil_rows() {
-                return $bog_atelier_lexicon_of('sigil').map(entry => this.Entry(entry.id));
-            }
-            sign_rows() {
-                return $bog_atelier_lexicon_of('sign').map(entry => this.Entry(entry.id));
-            }
-            entry(id) {
-                return $bog_atelier_lexicon_entry(id);
-            }
-            entry_id(id) {
-                return id;
-            }
-            entry_title(id) {
-                return this.entry(id).title;
-            }
-            entry_note(id) {
-                return this.entry(id).note;
-            }
-            entry_canon(id) {
-                return this.entry(id).canon === 'manga' ? this.canon_manga() : this.canon_fan();
-            }
-        }
-        $$.$bog_atelier_grimoire = $bog_atelier_grimoire;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_style_attach("bog/atelier/grimoire/grimoire.view.css", "[bog_atelier_grimoire] {\n\tmax-width: 48rem;\n\tmargin: 0 auto;\n\tpadding: 1rem;\n\tgap: 0.5rem;\n}\n\n[bog_atelier_grimoire_sigils_title],\n[bog_atelier_grimoire_signs_title] {\n\tfont-size: 1.5rem;\n\tfont-family: Georgia, 'Times New Roman', serif;\n\tmargin-top: 1rem;\n}\n\n[bog_atelier_grimoire_entry] {\n\tgap: 1rem;\n\talign-items: center;\n\tpadding: 0.5rem 0;\n\tborder-bottom: 1px solid var(--mol_theme_line);\n}\n\n[bog_atelier_grimoire_icon] {\n\twidth: 4rem;\n\theight: 4rem;\n\tcolor: var(--bog_atelier_ink);\n}\n\n[bog_atelier_grimoire_name] {\n\tgap: 0.75rem;\n\talign-items: baseline;\n}\n\n[bog_atelier_grimoire_title] {\n\tfont-weight: bold;\n\tfont-size: 1.125rem;\n}\n\n[bog_atelier_grimoire_canon] {\n\tfont-size: 0.75rem;\n\topacity: 0.6;\n\ttext-transform: uppercase;\n\tletter-spacing: 0.05em;\n}\n\n[bog_atelier_grimoire_note] {\n\topacity: 0.85;\n}\n");
-})($ || ($ = {}));
 
 ;
 	($.$bog_atelier_course) = class $bog_atelier_course extends ($.$mol_view) {
@@ -23606,6 +23689,74 @@ var $;
 var $;
 (function ($) {
     $mol_style_attach("bog/atelier/course/course.view.css", "[bog_atelier_course] {\n\talign-items: flex-start;\n\tjustify-content: center;\n\tgap: 1.5rem;\n\tpadding: 1rem;\n\tflex-wrap: wrap;\n}\n\n[bog_atelier_course_menu] {\n\tflex: 0 1 14rem;\n\tgap: 0.125rem;\n\tposition: sticky;\n\ttop: 0;\n}\n\n[bog_atelier_course_item] {\n\tjustify-content: flex-start;\n\tgap: 0.5rem;\n\ttext-align: left;\n}\n\n[bog_atelier_course_item_mark] {\n\twidth: 1.5rem;\n\tjustify-content: center;\n\topacity: 0.6;\n\tfont-variant-numeric: tabular-nums;\n}\n\n[bog_atelier_course_item_done=\"true\"] [bog_atelier_course_item_mark] {\n\tcolor: var(--bog_atelier_accent);\n\topacity: 1;\n}\n\n[bog_atelier_course_item_current=\"true\"] {\n\tbackground: var(--mol_theme_hover);\n\tbox-shadow: inset 3px 0 0 var(--bog_atelier_accent);\n}\n\n[bog_atelier_course_lesson] {\n\tflex: 1 1 24rem;\n\tmax-width: 44rem;\n\tgap: 0.5rem;\n}\n\n[bog_atelier_course_head] {\n\talign-items: baseline;\n\tgap: 0.75rem;\n\tflex-wrap: wrap;\n}\n\n[bog_atelier_course_number] {\n\topacity: 0.55;\n\tfont-variant-numeric: tabular-nums;\n}\n\n[bog_atelier_course_title] {\n\tfont-family: Georgia, 'Times New Roman', serif;\n\tfont-size: 1.75rem;\n\tfont-style: italic;\n}\n\n[bog_atelier_course_source] {\n\topacity: 0.6;\n\tfont-size: 0.875rem;\n}\n\n[bog_atelier_course_text] {\n\tline-height: 1.5;\n\tmax-width: 40rem;\n}\n\n[bog_atelier_course_stage] {\n\tmargin: 0.5rem 0;\n\tmax-width: min( 100%, 58vh );\n}\n\n[bog_atelier_course_hint] {\n\topacity: 0.7;\n\tfont-style: italic;\n}\n\n[bog_atelier_course_actions] {\n\tgap: 0.5rem;\n\tflex-wrap: wrap;\n}\n\n[bog_atelier_course_finish] {\n\tfont-weight: bold;\n\tcolor: var(--bog_atelier_accent);\n}\n\n@media ( max-width: 720px ) {\n\t[bog_atelier_course_menu] {\n\t\tflex: 1 1 100%;\n\t\tflex-direction: row;\n\t\toverflow-x: auto;\n\t\tposition: static;\n\t}\n\t[bog_atelier_course_item_title] {\n\t\tdisplay: none;\n\t}\n}\n");
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_atelier_grimoire extends $.$bog_atelier_grimoire {
+            spell_rows() {
+                return $bog_atelier_course_lessons.map(lesson => this.Spell(lesson.id));
+            }
+            spell(id) {
+                return $bog_atelier_course_lessons.find(lesson => lesson.id === id);
+            }
+            spell_id(id) {
+                return id;
+            }
+            spell_lines(id) {
+                return [...$bog_atelier_course_base(this.spell(id)), ...$bog_atelier_course_guide(this.spell(id))];
+            }
+            spell_title(id) {
+                return this.spell(id).title;
+            }
+            spell_source(id) {
+                return this.spell(id).source;
+            }
+            spell_note(id) {
+                return this.spell(id).text;
+            }
+            sigil_rows() {
+                return $bog_atelier_lexicon_of('sigil').map(entry => this.Entry(entry.id));
+            }
+            sign_rows() {
+                return $bog_atelier_lexicon_of('sign').map(entry => this.Entry(entry.id));
+            }
+            entry(id) {
+                return $bog_atelier_lexicon_entry(id);
+            }
+            entry_id(id) {
+                return id;
+            }
+            entry_title(id) {
+                return this.entry(id).title;
+            }
+            entry_note(id) {
+                return this.entry(id).note;
+            }
+            entry_canon(id) {
+                return this.entry(id).canon === 'manga' ? this.canon_manga() : this.canon_fan();
+            }
+        }
+        __decorate([
+            $mol_mem_key
+        ], $bog_atelier_grimoire.prototype, "spell_lines", null);
+        $$.$bog_atelier_grimoire = $bog_atelier_grimoire;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("bog/atelier/grimoire/grimoire.view.css", "[bog_atelier_grimoire] {\n\tmax-width: 48rem;\n\tmargin: 0 auto;\n\tpadding: 1rem;\n\tgap: 0.5rem;\n}\n\n[bog_atelier_grimoire_spells_title],\n[bog_atelier_grimoire_sigils_title],\n[bog_atelier_grimoire_signs_title] {\n\tfont-size: 1.5rem;\n\tfont-family: Georgia, 'Times New Roman', serif;\n\tmargin-top: 1rem;\n}\n\n[bog_atelier_grimoire_entry] {\n\tgap: 1rem;\n\talign-items: center;\n\tpadding: 0.5rem 0;\n\tborder-bottom: 1px solid var(--mol_theme_line);\n}\n\n[bog_atelier_grimoire_icon] {\n\twidth: 4rem;\n\theight: 4rem;\n\tcolor: var(--bog_atelier_ink);\n}\n\n[bog_atelier_grimoire_name] {\n\tgap: 0.75rem;\n\talign-items: baseline;\n}\n\n[bog_atelier_grimoire_title] {\n\tfont-weight: bold;\n\tfont-size: 1.125rem;\n}\n\n[bog_atelier_grimoire_canon] {\n\tfont-size: 0.75rem;\n\topacity: 0.6;\n\ttext-transform: uppercase;\n\tletter-spacing: 0.05em;\n}\n\n[bog_atelier_grimoire_note] {\n\topacity: 0.85;\n}\n\n[bog_atelier_grimoire_spell] {\n\tgap: 1rem;\n\talign-items: center;\n\tpadding: 0.5rem;\n\tborder-radius: 0.5rem;\n}\n\n[bog_atelier_grimoire_spell_name] {\n\tgap: 0.75rem;\n\talign-items: baseline;\n\tflex-wrap: wrap;\n}\n\n[bog_atelier_grimoire_spell_title] {\n\tfont-weight: bold;\n\tfont-size: 1.125rem;\n}\n\n[bog_atelier_grimoire_spell_source] {\n\tfont-size: 0.75rem;\n\topacity: 0.6;\n}\n\n[bog_atelier_grimoire_spell_note] {\n\tcolor: var(--mol_theme_text);\n\topacity: 0.85;\n}\n");
 })($ || ($ = {}));
 
 ;

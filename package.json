@@ -294,6 +294,7 @@
     "$mol_embed_rutube",
     "$mol_embed_vklive",
     "$mol_expander",
+    "$bog_atelier_preview",
     "$bog_atelier_course"
   ],
   "dependencies": {
