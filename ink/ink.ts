@@ -227,6 +227,13 @@ namespace $ {
 		return d
 	}
 
+	export function $bog_atelier_ink_poly( line: $bog_atelier_ink_line ) {
+		const r = ( v: number )=> Math.round( v * 1000 ) / 1000
+		let d = ''
+		for( let i = 0; i < line.length; i += 2 ) d += `${ i ? 'L' : 'M' }${ r( line[ i ] ) } ${ r( line[ i + 1 ] ) }`
+		return d
+	}
+
 	export function $bog_atelier_ink_arc( x: number, y: number, r: number, from: number, to: number, count = 48 ) {
 		const out = [] as number[]
 		for( let k = 0; k <= count; ++ k ) {

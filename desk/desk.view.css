@@ -1,0 +1,17 @@
+[bog_atelier_desk] {
+	touch-action: none;
+	user-select: none;
+	-webkit-user-select: none;
+	cursor: crosshair;
+}
+
+[bog_atelier_desk_enabled="false"] {
+	cursor: default;
+}
+
+[bog_atelier_desk_line] {
+	fill: none;
+	stroke: var(--bog_atelier_ink, currentColor);
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}

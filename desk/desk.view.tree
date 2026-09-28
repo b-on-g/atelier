@@ -1,0 +1,27 @@
+$bog_atelier_desk $mol_svg_root
+	view_box \-1.25 -1.25 2.5 2.5
+	lines? /
+	line_now? /
+	pen_width 0.014
+	enabled true
+	attr *
+		^
+		bog_atelier_desk_enabled <= enabled
+	event *
+		^
+		pointerdown? <=> draw_start? null
+		pointermove? <=> draw_move? null
+		pointerup? <=> draw_end? null
+		pointercancel? <=> draw_end? null
+	sub /
+		<= Under $mol_svg_group
+			sub <= under /
+		<= Ink $mol_svg_group
+			sub <= ink /
+		<= Over $mol_svg_group
+			sub <= over /
+	Line* $mol_svg_path
+		geometry <= line_path* \
+		attr *
+			^
+			stroke-width <= pen_width
