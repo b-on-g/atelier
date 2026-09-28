@@ -78,8 +78,15 @@ namespace $.$$ {
 		mark_spot( index: number ) {
 			const ring = this.reading().ring!
 			const mark = this.mark( index )
-			const lift = mark.kind === 'sigil' ? mark.size / 2 + 0.08 : 0
-			return [ ring.x + mark.x * ring.r, ring.y + ( mark.y - lift ) * ring.r ] as const
+			if( mark.kind === 'sigil' ) return [ ring.x + mark.x * ring.r, ring.y + ( mark.y - mark.size / 2 - 0.08 ) * ring.r ] as const
+			const reach = Math.max( 0.2, Math.hypot( mark.x, mark.y ) - mark.size * 0.5 - 0.1 )
+			return [ ring.x + Math.cos( mark.angle ) * reach * ring.r, ring.y + ( Math.sin( mark.angle ) * reach + 0.02 ) * ring.r ] as const
+		}
+
+		mark_font( index: number ) {
+			const ring = this.reading().ring
+			const mark = this.mark( index )
+			return ( mark?.kind === 'sigil' ? 0.085 : 0.06 ) * ( ring?.r ?? 1 )
 		}
 
 		mark_x( index: number ) {
