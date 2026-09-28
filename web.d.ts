@@ -2522,17 +2522,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_check_icon extends $mol_check {
-	}
-	
-}
-
-//# sourceMappingURL=icon.view.tree.d.ts.map
-declare namespace $ {
 
 	export class $mol_svg extends $mol_view {
 		dom_name( ): string
@@ -2602,6 +2591,26 @@ declare namespace $ {
 		minimal_width( ): number
 		minimal_height( ): number
 		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=icon.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_volume_high extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=high.view.tree.d.ts.map
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_check_icon extends $mol_check {
 	}
 	
 }
@@ -4811,6 +4820,22 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $bog_atelier_voice_bed extends $mol_object2 {
+        stop: () => void;
+        destructor(): void;
+    }
+    class $bog_atelier_voice extends $mol_object2 {
+        static enabled(next?: boolean): boolean;
+        static volume(): number;
+        static context: AudioContext | null;
+        static audio(): AudioContext | null;
+        static noise(ctx: AudioContext): AudioBuffer;
+        static chime(element: string | null, misfire: boolean): void;
+        static bed(element: string | null, misfire: boolean, power: number): $bog_atelier_voice_bed;
+    }
+}
+
+declare namespace $ {
     const $bog_atelier_cast_art_span = 1.25;
     function $bog_atelier_cast_art_paper(lines: readonly $bog_atelier_ink_line[], size?: number): HTMLCanvasElement;
     function $bog_atelier_cast_art_glow(lines: readonly $bog_atelier_ink_line[], size?: number): HTMLCanvasElement;
@@ -5285,6 +5310,9 @@ declare namespace $.$$ {
     export class $bog_atelier_cast extends $.$bog_atelier_cast {
         spell(): $bog_atelier_spell;
         look(): look;
+        sound(): $bog_atelier_voice_bed;
+        hush(): null;
+        auto(): void;
         nodes(): ($bog_gamengine_mesh | $bog_gamengine_sprite | $bog_gamengine_light | $bog_gamengine_particle | $bog_atelier_cast_conductor)[];
         art(): {
             name: string;
@@ -7933,6 +7961,7 @@ declare namespace $.$$ {
         current_id(next?: string): string;
         current_index(): number;
         lesson(): $bog_atelier_course_lesson;
+        lines_of(id: string, next?: readonly $bog_atelier_ink_line[]): readonly $bog_atelier_ink_line[];
         lines(next?: readonly $bog_atelier_ink_line[]): readonly $bog_atelier_ink_line[];
         base(): number[][];
         guide(): number[][];
@@ -7979,7 +8008,22 @@ declare namespace $ {
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_link_source__uri_bog_atelier_app_3 = $mol_type_enforce<
+	type $mol_check_icon__hint_bog_atelier_app_3 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_check_icon['hint'] >
+	>
+	type $mol_check_icon__checked_bog_atelier_app_4 = $mol_type_enforce<
+		ReturnType< $bog_atelier_app['sound'] >
+		,
+		ReturnType< $mol_check_icon['checked'] >
+	>
+	type $mol_check_icon__Icon_bog_atelier_app_5 = $mol_type_enforce<
+		ReturnType< $bog_atelier_app['Sound_icon'] >
+		,
+		ReturnType< $mol_check_icon['Icon'] >
+	>
+	type $mol_link_source__uri_bog_atelier_app_6 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link_source['uri'] >
@@ -7988,6 +8032,9 @@ declare namespace $ {
 		Theme( ): $mol_theme_auto
 		screen( next?: string ): string
 		Nav( ): $mol_switch
+		sound( next?: boolean ): boolean
+		Sound_icon( ): $mol_icon_volume_high
+		Sound( ): $mol_check_icon
 		Lights( ): $mol_lights_toggle
 		Source( ): $mol_link_source
 		screen_body( ): readonly(any)[]
@@ -8007,6 +8054,7 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_atelier_app extends $.$bog_atelier_app {
         screen(next?: string): string;
+        sound(next?: boolean): boolean;
         screen_body(): $.$bog_atelier_workshop[] | $.$bog_atelier_grimoire[] | $.$bog_atelier_course[];
     }
 }

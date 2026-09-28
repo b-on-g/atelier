@@ -6611,21 +6611,6 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$mol_check_icon) = class $mol_check_icon extends ($.$mol_check) {};
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_style_attach("mol/check/icon/icon.view.css", "[mol_check_icon]:where([mol_check_checked]) {\n\tcolor: var(--mol_theme_current);\n}\n");
-})($ || ($ = {}));
-
-;
-"use strict";
-
-
-;
 	($.$mol_svg) = class $mol_svg extends ($.$mol_view) {
 		dom_name(){
 			return "svg";
@@ -6765,6 +6750,33 @@ var $;
 var $;
 (function ($) {
     $mol_style_attach("mol/icon/icon.view.css", "[mol_icon] {\n\tfill: currentColor;\n\tstroke: none;\n\twidth: 1em;\n\theight: 1.5em;\n\tflex: 0 0 auto;\n\tvertical-align: top;\n\tdisplay: inline-block;\n\tfilter: drop-shadow(0px 1px 1px var(--mol_theme_back));\n\ttransform-origin: center;\n}\n\n[mol_icon_path] {\n\ttransform-origin: center;\n}\n");
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_volume_high) = class $mol_icon_volume_high extends ($.$mol_icon) {
+		path(){
+			return "M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_check_icon) = class $mol_check_icon extends ($.$mol_check) {};
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/check/icon/icon.view.css", "[mol_check_icon]:where([mol_check_checked]) {\n\tcolor: var(--mol_theme_current);\n}\n");
 })($ || ($ = {}));
 
 ;
@@ -17804,6 +17816,129 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    const notes = {
+        fire: [220, 329.6, 440, 659.3],
+        water: [261.6, 392, 523.3, 784],
+        air: [293.7, 440, 587.3, 880],
+        earth: [146.8, 220, 293.7, 440],
+        light: [523.3, 784, 1046.5, 1568],
+        misfire: [233.1, 246.9, 311.1],
+    };
+    const beds = {
+        fire: { type: 'bandpass', freq: 900, q: 0.8, wobble: 9, level: 0.5 },
+        water: { type: 'lowpass', freq: 700, q: 0.5, wobble: 0.6, level: 0.6 },
+        air: { type: 'bandpass', freq: 1400, q: 1.8, wobble: 0.25, level: 0.45 },
+        earth: { type: 'lowpass', freq: 180, q: 1, wobble: 2, level: 0.9 },
+        light: { type: 'highpass', freq: 3000, q: 0.7, wobble: 0.4, level: 0.18 },
+        misfire: { type: 'bandpass', freq: 500, q: 1.2, wobble: 14, level: 0.4 },
+    };
+    class $bog_atelier_voice_bed extends $mol_object2 {
+        stop = () => { };
+        destructor() {
+            this.stop();
+        }
+    }
+    $.$bog_atelier_voice_bed = $bog_atelier_voice_bed;
+    class $bog_atelier_voice extends $mol_object2 {
+        static enabled(next) {
+            return this.$.$mol_state_local.value('bog_atelier_sound', next) ?? true;
+        }
+        static volume() {
+            return 0.16;
+        }
+        static context = null;
+        static audio() {
+            if (this.context)
+                return this.context;
+            const Context = globalThis.AudioContext;
+            if (!Context)
+                return null;
+            this.context = new Context;
+            return this.context;
+        }
+        static noise(ctx) {
+            const buffer = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < data.length; ++i)
+                data[i] = Math.random() * 2 - 1;
+            return buffer;
+        }
+        static chime(element, misfire) {
+            if (!this.enabled())
+                return;
+            const ctx = this.audio();
+            if (!ctx)
+                return;
+            if (ctx.state === 'suspended')
+                ctx.resume();
+            const now = ctx.currentTime;
+            const tones = notes[misfire || !element ? 'misfire' : element];
+            const master = ctx.createGain();
+            master.gain.value = this.volume();
+            master.connect(ctx.destination);
+            tones.forEach((freq, k) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = k ? 'sine' : 'triangle';
+                osc.frequency.value = freq;
+                const start = now + k * 0.07;
+                gain.gain.setValueAtTime(0, start);
+                gain.gain.linearRampToValueAtTime(0.5 / (k + 1), start + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.0001, start + 1.8);
+                osc.connect(gain).connect(master);
+                osc.start(start);
+                osc.stop(start + 1.9);
+            });
+        }
+        static bed(element, misfire, power) {
+            const bed = new $bog_atelier_voice_bed;
+            if (!this.enabled())
+                return bed;
+            const ctx = this.audio();
+            if (!ctx)
+                return bed;
+            const tune = beds[misfire || !element ? 'misfire' : element];
+            const now = ctx.currentTime;
+            const source = ctx.createBufferSource();
+            source.buffer = this.noise(ctx);
+            source.loop = true;
+            const filter = ctx.createBiquadFilter();
+            filter.type = tune.type;
+            filter.frequency.value = tune.freq;
+            filter.Q.value = tune.q;
+            const lfo = ctx.createOscillator();
+            lfo.frequency.value = tune.wobble;
+            const depth = ctx.createGain();
+            depth.gain.value = tune.freq * 0.35;
+            lfo.connect(depth).connect(filter.frequency);
+            const gain = ctx.createGain();
+            const level = this.volume() * tune.level * (0.5 + power * 0.5);
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.linearRampToValueAtTime(level, now + 1.2);
+            source.connect(filter).connect(gain).connect(ctx.destination);
+            source.start(now);
+            lfo.start(now);
+            bed.stop = () => {
+                const at = ctx.currentTime;
+                gain.gain.cancelScheduledValues(at);
+                gain.gain.setValueAtTime(gain.gain.value, at);
+                gain.gain.linearRampToValueAtTime(0, at + 0.6);
+                source.stop(at + 0.7);
+                lfo.stop(at + 0.7);
+            };
+            return bed;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $bog_atelier_voice, "enabled", null);
+    $.$bog_atelier_voice = $bog_atelier_voice;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
     $.$bog_atelier_cast_art_span = 1.25;
     function canvas(size) {
         const node = $mol_dom_context.document.createElement('canvas');
@@ -18155,6 +18290,22 @@ var $;
                     return looks.misfire;
                 return looks[spell.element];
             }
+            sound() {
+                this.cast_key();
+                const spell = this.spell();
+                const voice = this.$.$bog_atelier_voice;
+                voice.chime(spell.element, spell.misfire);
+                return voice.bed(spell.element, spell.misfire, spell.power);
+            }
+            hush() {
+                if (this.Conductor().spent())
+                    this.sound().stop();
+                return null;
+            }
+            auto() {
+                this.sound();
+                this.hush();
+            }
             nodes() {
                 return [this.Paper(), this.Glow(), this.Lamp(), this.Sun(), this.Flow(), this.Core(), this.Conductor()];
             }
@@ -18371,6 +18522,12 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_atelier_cast.prototype, "look", null);
+        __decorate([
+            $mol_mem
+        ], $bog_atelier_cast.prototype, "sound", null);
+        __decorate([
+            $mol_mem
+        ], $bog_atelier_cast.prototype, "hush", null);
         __decorate([
             $mol_mem
         ], $bog_atelier_cast.prototype, "nodes", null);
@@ -19637,12 +19794,11 @@ var $;
                 this.lines([]);
             }
             break() {
-                const lines = this.lines();
-                const ring = this.reading().ring_lines;
-                const last = [...ring].sort((a, b) => b - a)[0];
-                if (last === undefined)
-                    return this.undo();
-                this.lines(lines.filter((_, i) => i !== last));
+                const reading = this.reading();
+                const ring = reading.ring;
+                if (!ring)
+                    return;
+                this.lines($bog_atelier_share_open(this.lines(), reading.ring_lines, ring.x, ring.y, ring.gap_at));
             }
             tools() {
                 const share = this.reading().ring ? [this.Share()] : [];
@@ -23279,9 +23435,11 @@ var $;
             lesson() {
                 return this.lessons()[this.current_index()];
             }
-            lines(next) {
-                this.current_id();
+            lines_of(id, next) {
                 return next ?? [];
+            }
+            lines(next) {
+                return this.lines_of(this.current_id(), next);
             }
             base() {
                 return $bog_atelier_course_base(this.lesson());
@@ -23379,8 +23537,8 @@ var $;
             $mol_mem
         ], $bog_atelier_course.prototype, "current_id", null);
         __decorate([
-            $mol_mem
-        ], $bog_atelier_course.prototype, "lines", null);
+            $mol_mem_key
+        ], $bog_atelier_course.prototype, "lines_of", null);
         __decorate([
             $mol_mem
         ], $bog_atelier_course.prototype, "base", null);
@@ -23433,6 +23591,21 @@ var $;
 			});
 			return obj;
 		}
+		sound(next){
+			if(next !== undefined) return next;
+			return true;
+		}
+		Sound_icon(){
+			const obj = new this.$.$mol_icon_volume_high();
+			return obj;
+		}
+		Sound(){
+			const obj = new this.$.$mol_check_icon();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_atelier_app_Sound_hint")));
+			(obj.checked) = (next) => ((this.sound(next)));
+			(obj.Icon) = () => ((this.Sound_icon()));
+			return obj;
+		}
 		Lights(){
 			const obj = new this.$.$mol_lights_toggle();
 			return obj;
@@ -23459,7 +23632,11 @@ var $;
 			];
 		}
 		tools(){
-			return [(this.Lights()), (this.Source())];
+			return [
+				(this.Sound()), 
+				(this.Lights()), 
+				(this.Source())
+			];
 		}
 		body(){
 			return (this.screen_body());
@@ -23480,6 +23657,9 @@ var $;
 	($mol_mem(($.$bog_atelier_app.prototype), "Theme"));
 	($mol_mem(($.$bog_atelier_app.prototype), "screen"));
 	($mol_mem(($.$bog_atelier_app.prototype), "Nav"));
+	($mol_mem(($.$bog_atelier_app.prototype), "sound"));
+	($mol_mem(($.$bog_atelier_app.prototype), "Sound_icon"));
+	($mol_mem(($.$bog_atelier_app.prototype), "Sound"));
 	($mol_mem(($.$bog_atelier_app.prototype), "Lights"));
 	($mol_mem(($.$bog_atelier_app.prototype), "Source"));
 	($mol_mem(($.$bog_atelier_app.prototype), "Sheet"));
@@ -23500,6 +23680,9 @@ var $;
         class $bog_atelier_app extends $.$bog_atelier_app {
             screen(next) {
                 return this.$.$mol_state_arg.value('screen', next) ?? 'course';
+            }
+            sound(next) {
+                return this.$.$bog_atelier_voice.enabled(next);
             }
             screen_body() {
                 switch (this.screen()) {
