@@ -18268,7 +18268,7 @@ var $;
             light: {
                 frame: 'spark',
                 from: linear(1, 0.98, 0.85, 0), to: linear(1, 0.85, 0.45, 0),
-                glow: [2.2, 2, 1.5], lamp: [1, 0.95, 0.8], lamp_power: 3,
+                glow: [2.2, 2, 1.5], lamp: [1, 0.95, 0.8], lamp_power: 1.1,
                 speed: [0.15, 0.6], life: [0.9, 1.8], size: [0.3, 0.04],
                 gravity: 0.2, spread: 3.14, rate: 120, core: 80,
             },
@@ -18369,6 +18369,15 @@ var $;
                         speed *= 0.45;
                         spread = Math.max(spread, 0.5);
                         rate *= 0.5;
+                        if (spell.lift < 0) {
+                            dir_y = 0.1;
+                            speed *= 0.35;
+                            spread = 1.5;
+                            gravity *= 0.08;
+                            life = 2.2;
+                            rate *= 0.7;
+                            core = 0;
+                        }
                         break;
                     case 'jet':
                         spread = Math.min(spread, 0.3);
@@ -18400,9 +18409,9 @@ var $;
                     case 'bolt':
                         dir_y = Math.hypot(dir_x, dir_z) > 0.1 ? 0.35 : 1;
                         spread = 0.06;
-                        speed *= 1.8;
-                        gravity *= 0.2;
-                        life = 1.4;
+                        speed *= 0.9;
+                        gravity *= 0.15;
+                        life = 1.8;
                         break;
                     case 'vortex':
                         gravity = 0;
@@ -18467,7 +18476,7 @@ var $;
             flow_size() {
                 const spell = this.spell();
                 const size = this.look().size;
-                const k = 0.75 + spell.power * 0.35;
+                const k = (0.75 + spell.power * 0.35) * (this.tune().form === 'bolt' ? 2.2 : 1);
                 return this.tune().form === 'dust'
                     ? new Float32Array([size[0] * k * 0.4, size[0] * k * 1.4])
                     : new Float32Array([size[0] * k, size[1] * k]);
