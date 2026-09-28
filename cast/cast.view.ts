@@ -77,6 +77,26 @@ namespace $.$$ {
 		}
 
 		@ $mol_mem
+		sound() {
+			this.cast_key()
+			const spell = this.spell()
+			const voice = this.$.$bog_atelier_voice
+			voice.chime( spell.element, spell.misfire )
+			return voice.bed( spell.element, spell.misfire, spell.power )
+		}
+
+		@ $mol_mem
+		hush() {
+			if( this.Conductor().spent() ) this.sound().stop()
+			return null
+		}
+
+		auto() {
+			this.sound()
+			this.hush()
+		}
+
+		@ $mol_mem
 		nodes() {
 			return [ this.Paper(), this.Glow(), this.Lamp(), this.Sun(), this.Flow(), this.Core(), this.Conductor() ]
 		}

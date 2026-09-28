@@ -32,10 +32,13 @@ namespace $.$$ {
 			return this.lessons()[ this.current_index() ]
 		}
 
-		@ $mol_mem
-		lines( next?: readonly $bog_atelier_ink_line[] ) {
-			this.current_id()
+		@ $mol_mem_key
+		lines_of( id: string, next?: readonly $bog_atelier_ink_line[] ) {
 			return next ?? []
+		}
+
+		lines( next?: readonly $bog_atelier_ink_line[] ) {
+			return this.lines_of( this.current_id(), next )
 		}
 
 		@ $mol_mem

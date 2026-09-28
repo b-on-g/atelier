@@ -12,6 +12,10 @@ $bog_atelier_app $mol_page
 				book @ \Гримуар
 		<= Tools
 	tools /
+		<= Sound $mol_check_icon
+			hint @ \Звук
+			checked? <=> sound? true
+			Icon <= Sound_icon $mol_icon_volume_high
 		<= Lights $mol_lights_toggle
 		<= Source $mol_link_source
 			uri \https://github.com/b-on-g/atelier
