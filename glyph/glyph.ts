@@ -35,7 +35,7 @@ namespace $ {
 	export const $bog_atelier_glyph_band = 0.13
 	export const $bog_atelier_glyph_core = 0.42
 	export const $bog_atelier_glyph_accept = 0.09
-	export const $bog_atelier_glyph_margin = 1.3
+	export const $bog_atelier_glyph_margin = 1.15
 	export const $bog_atelier_glyph_flip = 1.25
 	export const $bog_atelier_glyph_closure = 2 * Math.PI / 180
 
@@ -120,10 +120,16 @@ namespace $ {
 		return [ ... groups.values() ]
 	}
 
+	function family( id: string ) {
+		const entry = $bog_atelier_lexicon_entry( id )
+		return entry?.element ?? id
+	}
+
 	function pick( rank: readonly { id: string, distance: number }[] ) {
 		const best = rank[ 0 ]
 		if( !best || best.distance > $bog_atelier_glyph_accept ) return null
-		const second = rank[ 1 ]
+		const kin = family( best.id )
+		const second = rank.find( one => family( one.id ) !== kin )
 		if( second && second.distance < best.distance * $bog_atelier_glyph_margin ) return null
 		return best.id
 	}
@@ -148,7 +154,14 @@ namespace $ {
 		let rank: { id: string, distance: number }[]
 		let inverted = false
 		if( kind === 'sigil' ) {
-			rank = $bog_atelier_read_rank( $bog_atelier_read_cloud( local ), $bog_atelier_glyph_templates( 'sigil' ) )
+			const best = new Map< string, number >()
+			for( const twist of [ -0.2, -0.1, 0, 0.1, 0.2 ] ) {
+				const posed = twist ? local.map( line => $bog_atelier_ink_move( line, 0, 0, 1, twist ) ) : local
+				for( const one of $bog_atelier_read_rank( $bog_atelier_read_cloud( posed ), $bog_atelier_glyph_templates( 'sigil' ) ) ) {
+					best.set( one.id, Math.min( best.get( one.id ) ?? Infinity, one.distance ) )
+				}
+			}
+			rank = [ ... best ].map( ( [ id, distance ] )=> ( { id, distance } ) ).sort( ( a, b )=> a.distance - b.distance )
 		} else {
 			const upright = new Map< string, number >()
 			const upside = new Map< string, number >()
@@ -166,7 +179,15 @@ namespace $ {
 			const top = rank[ 0 ]
 			if( top ) inverted = ( upside.get( top.id ) ?? Infinity ) * $bog_atelier_glyph_flip < ( upright.get( top.id ) ?? Infinity )
 		}
-		return { kind, id: pick( rank ), lines: group, x, y, angle, size, inverted, distance: rank[ 0 ]?.distance ?? Infinity, rank: rank.slice( 0, 3 ) }
+		let id = pick( rank )
+		if( id === 'wind' || id === 'aeroform' ) {
+			const dots = local.filter( line => {
+				const box = $bog_atelier_ink_box( line )
+				return Math.max( box.width, box.height ) < size * 0.12
+			} ).length
+			id = dots >= 2 ? 'aeroform' : 'wind'
+		}
+		return { kind, id, lines: group, x, y, angle, size, inverted, distance: rank[ 0 ]?.distance ?? Infinity, rank: rank.slice( 0, 3 ) }
 	}
 
 	export const $bog_atelier_glyph_sigil_size = 0.52
