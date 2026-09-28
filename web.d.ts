@@ -4892,343 +4892,349 @@ declare namespace $ {
 		,
 		ReturnType< $bog_gamengine_draw['clear'] >
 	>
-	type $bog_gamengine_draw__ambient_bog_atelier_cast_4 = $mol_type_enforce<
+	type $bog_gamengine_draw__dpr_bog_atelier_cast_4 = $mol_type_enforce<
+		ReturnType< $bog_atelier_cast['draw_dpr'] >
+		,
+		ReturnType< $bog_gamengine_draw['dpr'] >
+	>
+	type $bog_gamengine_draw__ambient_bog_atelier_cast_5 = $mol_type_enforce<
 		number
 		,
 		ReturnType< $bog_gamengine_draw['ambient'] >
 	>
-	type $bog_gamengine_draw__shadows_bog_atelier_cast_5 = $mol_type_enforce<
+	type $bog_gamengine_draw__shadows_bog_atelier_cast_6 = $mol_type_enforce<
 		boolean
 		,
 		ReturnType< $bog_gamengine_draw['shadows'] >
 	>
-	type $bog_gamengine_draw__passes_bog_atelier_cast_6 = $mol_type_enforce<
+	type $bog_gamengine_draw__passes_bog_atelier_cast_7 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $bog_gamengine_draw['passes'] >
 	>
-	type __bog_atelier_cast_7 = $mol_type_enforce<
+	type __bog_atelier_cast_8 = $mol_type_enforce<
 		Parameters< $bog_atelier_cast['spent'] >[0]
 		,
 		Parameters< ReturnType< $bog_atelier_cast['Conductor'] >['spent'] >[0]
 	>
-	type $bog_gamengine_scene__clock_bog_atelier_cast_8 = $mol_type_enforce<
+	type $bog_gamengine_scene__clock_bog_atelier_cast_9 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Clock'] >
 		,
 		ReturnType< $bog_gamengine_scene['clock'] >
 	>
-	type $bog_gamengine_scene__kids_bog_atelier_cast_9 = $mol_type_enforce<
+	type $bog_gamengine_scene__kids_bog_atelier_cast_10 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['nodes'] >
 		,
 		ReturnType< $bog_gamengine_scene['kids'] >
 	>
-	type $bog_gamengine_scene__cam_bog_atelier_cast_10 = $mol_type_enforce<
+	type $bog_gamengine_scene__cam_bog_atelier_cast_11 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Eye'] >
 		,
 		ReturnType< $bog_gamengine_scene['cam'] >
 	>
-	type $bog_gamengine_cam_deep__pos_bog_atelier_cast_11 = $mol_type_enforce<
+	type $bog_gamengine_cam_deep__pos_bog_atelier_cast_12 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['eye_pos'] >
 		,
 		ReturnType< $bog_gamengine_cam_deep['pos'] >
 	>
-	type $bog_gamengine_cam_deep__rot_bog_atelier_cast_12 = $mol_type_enforce<
+	type $bog_gamengine_cam_deep__rot_bog_atelier_cast_13 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['eye_rot'] >
 		,
 		ReturnType< $bog_gamengine_cam_deep['rot'] >
 	>
-	type $bog_gamengine_cam_deep__fov_bog_atelier_cast_13 = $mol_type_enforce<
+	type $bog_gamengine_cam_deep__fov_bog_atelier_cast_14 = $mol_type_enforce<
 		number
 		,
 		ReturnType< $bog_gamengine_cam_deep['fov'] >
 	>
-	type $bog_gamengine_cam_deep__far_bog_atelier_cast_14 = $mol_type_enforce<
+	type $bog_gamengine_cam_deep__far_bog_atelier_cast_15 = $mol_type_enforce<
 		number
 		,
 		ReturnType< $bog_gamengine_cam_deep['far'] >
 	>
-	type $bog_gamengine_atlas__size_bog_atelier_cast_15 = $mol_type_enforce<
+	type $bog_gamengine_atlas__size_bog_atelier_cast_16 = $mol_type_enforce<
 		number
 		,
 		ReturnType< $bog_gamengine_atlas['size'] >
 	>
-	type $bog_gamengine_atlas__sources_bog_atelier_cast_16 = $mol_type_enforce<
+	type $bog_gamengine_atlas__sources_bog_atelier_cast_17 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['art'] >
 		,
 		ReturnType< $bog_gamengine_atlas['sources'] >
 	>
-	type $bog_gamengine_atlas__size_bog_atelier_cast_17 = $mol_type_enforce<
+	type $bog_gamengine_atlas__size_bog_atelier_cast_18 = $mol_type_enforce<
 		number
 		,
 		ReturnType< $bog_gamengine_atlas['size'] >
 	>
-	type $bog_gamengine_atlas__sources_bog_atelier_cast_18 = $mol_type_enforce<
+	type $bog_gamengine_atlas__sources_bog_atelier_cast_19 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['dust'] >
 		,
 		ReturnType< $bog_gamengine_atlas['sources'] >
 	>
-	type $bog_gamengine_mesh__shape_bog_atelier_cast_19 = $mol_type_enforce<
+	type $bog_gamengine_mesh__shape_bog_atelier_cast_20 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Plane'] >
 		,
 		ReturnType< $bog_gamengine_mesh['shape'] >
 	>
-	type $bog_gamengine_mesh__atlas_bog_atelier_cast_20 = $mol_type_enforce<
+	type $bog_gamengine_mesh__atlas_bog_atelier_cast_21 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Art'] >
 		,
 		ReturnType< $bog_gamengine_mesh['atlas'] >
 	>
-	type $bog_gamengine_mesh__frame_bog_atelier_cast_21 = $mol_type_enforce<
+	type $bog_gamengine_mesh__frame_bog_atelier_cast_22 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_gamengine_mesh['frame'] >
 	>
-	type $bog_gamengine_mesh__size_bog_atelier_cast_22 = $mol_type_enforce<
+	type $bog_gamengine_mesh__size_bog_atelier_cast_23 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['paper_size'] >
 		,
 		ReturnType< $bog_gamengine_mesh['size'] >
 	>
-	type $bog_gamengine_sprite__atlas_bog_atelier_cast_23 = $mol_type_enforce<
+	type $bog_gamengine_sprite__atlas_bog_atelier_cast_24 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Art'] >
 		,
 		ReturnType< $bog_gamengine_sprite['atlas'] >
 	>
-	type $bog_gamengine_sprite__frame_bog_atelier_cast_24 = $mol_type_enforce<
+	type $bog_gamengine_sprite__frame_bog_atelier_cast_25 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_gamengine_sprite['frame'] >
 	>
-	type $bog_gamengine_sprite__size_bog_atelier_cast_25 = $mol_type_enforce<
+	type $bog_gamengine_sprite__size_bog_atelier_cast_26 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['glow_size'] >
 		,
 		ReturnType< $bog_gamengine_sprite['size'] >
 	>
-	type $bog_gamengine_sprite__pos_bog_atelier_cast_26 = $mol_type_enforce<
+	type $bog_gamengine_sprite__pos_bog_atelier_cast_27 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['glow_pos'] >
 		,
 		ReturnType< $bog_gamengine_sprite['pos'] >
 	>
-	type $bog_gamengine_sprite__rot_bog_atelier_cast_27 = $mol_type_enforce<
+	type $bog_gamengine_sprite__rot_bog_atelier_cast_28 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['flat_rot'] >
 		,
 		ReturnType< $bog_gamengine_sprite['rot'] >
 	>
-	type $bog_gamengine_light__kind_bog_atelier_cast_28 = $mol_type_enforce<
+	type $bog_gamengine_light__kind_bog_atelier_cast_29 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_gamengine_light['kind'] >
 	>
-	type $bog_gamengine_light__range_bog_atelier_cast_29 = $mol_type_enforce<
+	type $bog_gamengine_light__range_bog_atelier_cast_30 = $mol_type_enforce<
 		number
 		,
 		ReturnType< $bog_gamengine_light['range'] >
 	>
-	type $bog_gamengine_light__pos_bog_atelier_cast_30 = $mol_type_enforce<
+	type $bog_gamengine_light__pos_bog_atelier_cast_31 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['lamp_pos'] >
 		,
 		ReturnType< $bog_gamengine_light['pos'] >
 	>
-	type $bog_gamengine_light__kind_bog_atelier_cast_31 = $mol_type_enforce<
+	type $bog_gamengine_light__kind_bog_atelier_cast_32 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_gamengine_light['kind'] >
 	>
-	type $bog_gamengine_light__power_bog_atelier_cast_32 = $mol_type_enforce<
+	type $bog_gamengine_light__power_bog_atelier_cast_33 = $mol_type_enforce<
 		number
 		,
 		ReturnType< $bog_gamengine_light['power'] >
 	>
-	type $bog_gamengine_light__rot_bog_atelier_cast_33 = $mol_type_enforce<
+	type $bog_gamengine_light__rot_bog_atelier_cast_34 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['sun_rot'] >
 		,
 		ReturnType< $bog_gamengine_light['rot'] >
 	>
-	type $bog_gamengine_particle_pool__cap_bog_atelier_cast_34 = $mol_type_enforce<
+	type $bog_gamengine_particle_pool__cap_bog_atelier_cast_35 = $mol_type_enforce<
 		number
 		,
 		ReturnType< $bog_gamengine_particle_pool['cap'] >
 	>
-	type $bog_gamengine_particle__pool_bog_atelier_cast_35 = $mol_type_enforce<
+	type $bog_gamengine_particle__pool_bog_atelier_cast_36 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Flow_pool'] >
 		,
 		ReturnType< $bog_gamengine_particle['pool'] >
 	>
-	type $bog_gamengine_particle__atlas_bog_atelier_cast_36 = $mol_type_enforce<
+	type $bog_gamengine_particle__atlas_bog_atelier_cast_37 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Dust'] >
 		,
 		ReturnType< $bog_gamengine_particle['atlas'] >
 	>
-	type $bog_gamengine_particle__billboard_bog_atelier_cast_37 = $mol_type_enforce<
+	type $bog_gamengine_particle__billboard_bog_atelier_cast_38 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_gamengine_particle['billboard'] >
 	>
-	type $bog_gamengine_particle__frame_bog_atelier_cast_38 = $mol_type_enforce<
+	type $bog_gamengine_particle__frame_bog_atelier_cast_39 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['flow_frame'] >
 		,
 		ReturnType< $bog_gamengine_particle['frame'] >
 	>
-	type $bog_gamengine_particle__pos_bog_atelier_cast_39 = $mol_type_enforce<
+	type $bog_gamengine_particle__pos_bog_atelier_cast_40 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['flow_pos'] >
 		,
 		ReturnType< $bog_gamengine_particle['pos'] >
 	>
-	type $bog_gamengine_particle__dir_bog_atelier_cast_40 = $mol_type_enforce<
+	type $bog_gamengine_particle__dir_bog_atelier_cast_41 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['flow_dir'] >
 		,
 		ReturnType< $bog_gamengine_particle['dir'] >
 	>
-	type $bog_gamengine_particle__life_bog_atelier_cast_41 = $mol_type_enforce<
+	type $bog_gamengine_particle__life_bog_atelier_cast_42 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['flow_life'] >
 		,
 		ReturnType< $bog_gamengine_particle['life'] >
 	>
-	type $bog_gamengine_particle__speed_bog_atelier_cast_42 = $mol_type_enforce<
+	type $bog_gamengine_particle__speed_bog_atelier_cast_43 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['flow_speed'] >
 		,
 		ReturnType< $bog_gamengine_particle['speed'] >
 	>
-	type $bog_gamengine_particle__spread_bog_atelier_cast_43 = $mol_type_enforce<
+	type $bog_gamengine_particle__spread_bog_atelier_cast_44 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['flow_spread'] >
 		,
 		ReturnType< $bog_gamengine_particle['spread'] >
 	>
-	type $bog_gamengine_particle__gravity_bog_atelier_cast_44 = $mol_type_enforce<
+	type $bog_gamengine_particle__gravity_bog_atelier_cast_45 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['flow_gravity'] >
 		,
 		ReturnType< $bog_gamengine_particle['gravity'] >
 	>
-	type $bog_gamengine_particle__size_bog_atelier_cast_45 = $mol_type_enforce<
+	type $bog_gamengine_particle__size_bog_atelier_cast_46 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['flow_size'] >
 		,
 		ReturnType< $bog_gamengine_particle['size'] >
 	>
-	type $bog_gamengine_particle__color_bog_atelier_cast_46 = $mol_type_enforce<
+	type $bog_gamengine_particle__color_bog_atelier_cast_47 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['flow_color'] >
 		,
 		ReturnType< $bog_gamengine_particle['color'] >
 	>
-	type $bog_gamengine_particle_pool__cap_bog_atelier_cast_47 = $mol_type_enforce<
+	type $bog_gamengine_particle_pool__cap_bog_atelier_cast_48 = $mol_type_enforce<
 		number
 		,
 		ReturnType< $bog_gamengine_particle_pool['cap'] >
 	>
-	type $bog_gamengine_particle__pool_bog_atelier_cast_48 = $mol_type_enforce<
+	type $bog_gamengine_particle__pool_bog_atelier_cast_49 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Core_pool'] >
 		,
 		ReturnType< $bog_gamengine_particle['pool'] >
 	>
-	type $bog_gamengine_particle__atlas_bog_atelier_cast_49 = $mol_type_enforce<
+	type $bog_gamengine_particle__atlas_bog_atelier_cast_50 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Dust'] >
 		,
 		ReturnType< $bog_gamengine_particle['atlas'] >
 	>
-	type $bog_gamengine_particle__frame_bog_atelier_cast_50 = $mol_type_enforce<
+	type $bog_gamengine_particle__frame_bog_atelier_cast_51 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_gamengine_particle['frame'] >
 	>
-	type $bog_gamengine_particle__billboard_bog_atelier_cast_51 = $mol_type_enforce<
+	type $bog_gamengine_particle__billboard_bog_atelier_cast_52 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_gamengine_particle['billboard'] >
 	>
-	type $bog_gamengine_particle__spread_bog_atelier_cast_52 = $mol_type_enforce<
+	type $bog_gamengine_particle__spread_bog_atelier_cast_53 = $mol_type_enforce<
 		number
 		,
 		ReturnType< $bog_gamengine_particle['spread'] >
 	>
-	type $bog_gamengine_particle__pos_bog_atelier_cast_53 = $mol_type_enforce<
+	type $bog_gamengine_particle__pos_bog_atelier_cast_54 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['core_pos'] >
 		,
 		ReturnType< $bog_gamengine_particle['pos'] >
 	>
-	type $bog_gamengine_particle__life_bog_atelier_cast_54 = $mol_type_enforce<
+	type $bog_gamengine_particle__life_bog_atelier_cast_55 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['core_life'] >
 		,
 		ReturnType< $bog_gamengine_particle['life'] >
 	>
-	type $bog_gamengine_particle__speed_bog_atelier_cast_55 = $mol_type_enforce<
+	type $bog_gamengine_particle__speed_bog_atelier_cast_56 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['core_speed'] >
 		,
 		ReturnType< $bog_gamengine_particle['speed'] >
 	>
-	type $bog_gamengine_particle__size_bog_atelier_cast_56 = $mol_type_enforce<
+	type $bog_gamengine_particle__size_bog_atelier_cast_57 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['core_size'] >
 		,
 		ReturnType< $bog_gamengine_particle['size'] >
 	>
-	type $bog_gamengine_particle__color_bog_atelier_cast_57 = $mol_type_enforce<
+	type $bog_gamengine_particle__color_bog_atelier_cast_58 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['core_color'] >
 		,
 		ReturnType< $bog_gamengine_particle['color'] >
 	>
-	type $bog_atelier_cast_conductor__key_bog_atelier_cast_58 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__key_bog_atelier_cast_59 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['cast_key'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['key'] >
 	>
-	type $bog_atelier_cast_conductor__flow_bog_atelier_cast_59 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__flow_bog_atelier_cast_60 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Flow'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['flow'] >
 	>
-	type $bog_atelier_cast_conductor__core_bog_atelier_cast_60 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__core_bog_atelier_cast_61 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Core'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['core'] >
 	>
-	type $bog_atelier_cast_conductor__glow_bog_atelier_cast_61 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__glow_bog_atelier_cast_62 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Glow'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['glow'] >
 	>
-	type $bog_atelier_cast_conductor__lamp_bog_atelier_cast_62 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__lamp_bog_atelier_cast_63 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['Lamp'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['lamp'] >
 	>
-	type $bog_atelier_cast_conductor__flow_rate_bog_atelier_cast_63 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__flow_rate_bog_atelier_cast_64 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['flow_rate'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['flow_rate'] >
 	>
-	type $bog_atelier_cast_conductor__core_rate_bog_atelier_cast_64 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__core_rate_bog_atelier_cast_65 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['core_rate'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['core_rate'] >
 	>
-	type $bog_atelier_cast_conductor__glow_color_bog_atelier_cast_65 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__glow_color_bog_atelier_cast_66 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['glow_color'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['glow_color'] >
 	>
-	type $bog_atelier_cast_conductor__lamp_color_bog_atelier_cast_66 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__lamp_color_bog_atelier_cast_67 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['lamp_color'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['lamp_color'] >
 	>
-	type $bog_atelier_cast_conductor__lamp_power_bog_atelier_cast_67 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__lamp_power_bog_atelier_cast_68 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['lamp_power'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['lamp_power'] >
 	>
-	type $bog_atelier_cast_conductor__neat_bog_atelier_cast_68 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__neat_bog_atelier_cast_69 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['neat'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['neat'] >
 	>
-	type $bog_atelier_cast_conductor__form_bog_atelier_cast_69 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__form_bog_atelier_cast_70 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['form'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['form'] >
 	>
-	type $bog_atelier_cast_conductor__life_bog_atelier_cast_70 = $mol_type_enforce<
+	type $bog_atelier_cast_conductor__life_bog_atelier_cast_71 = $mol_type_enforce<
 		ReturnType< $bog_atelier_cast['life'] >
 		,
 		ReturnType< $bog_atelier_cast_conductor['life'] >
 	>
 	export class $bog_atelier_cast extends $mol_view {
 		clear( ): Float32Array
+		draw_dpr( ): number
 		Bloom( ): $bog_gamengine_shader_post_bloom
 		Tone( ): $bog_gamengine_shader_post_tone
 		Vignette( ): $bog_gamengine_shader_post_vignette
@@ -5322,6 +5328,7 @@ declare namespace $.$$ {
             name: string;
             image: HTMLCanvasElement;
         }[];
+        draw_dpr(): number;
         clear(): Float32Array<ArrayBuffer>;
         eye_pos(): Float32Array<ArrayBuffer>;
         eye_rot(): Float32Array<ArrayBuffer>;

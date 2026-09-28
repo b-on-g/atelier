@@ -16793,6 +16793,9 @@ var $;
 			const obj = new this.$.Float32Array();
 			return obj;
 		}
+		draw_dpr(){
+			return 1;
+		}
 		Bloom(){
 			const obj = new this.$.$bog_gamengine_shader_post_bloom();
 			return obj;
@@ -16810,6 +16813,7 @@ var $;
 			(obj.scene) = () => ((this.Scene()));
 			(obj.cam) = () => ((this.Eye()));
 			(obj.clear) = () => ((this.clear()));
+			(obj.dpr) = () => ((this.draw_dpr()));
 			(obj.ambient) = () => (0.18);
 			(obj.shadows) = (next) => (false);
 			(obj.passes) = () => ([
@@ -18312,6 +18316,9 @@ var $;
                     { name: 'spark', image: $bog_atelier_cast_art_spark() },
                     { name: 'mote', image: $bog_atelier_cast_art_mote() },
                 ];
+            }
+            draw_dpr() {
+                return Math.min(2, this.$.$mol_dom_context.devicePixelRatio || 1);
             }
             clear() {
                 return new Float32Array([0.035, 0.03, 0.045, 1]);

@@ -123,3 +123,6 @@
 	include \/mol/view/tree/test
 \/bog/gamengine/skin
 	deploy \/bog/gamengine/skin/model/arm.glb
+\/bog/atelier/app
+	deploy \/bog/atelier/assets/logo.svg
+	deploy \/bog/atelier/assets/og.png
