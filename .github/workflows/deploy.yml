@@ -30,4 +30,5 @@ jobs:
 
     - name: URL
       if: github.ref == 'refs/heads/main'
-      run: echo "- app: https://b-on-g.github.io/atelier/" >> "$GITHUB_STEP_SUMMARY"
+      run: |
+        echo "- app: https://b-on-g.github.io/atelier/" >> "$GITHUB_STEP_SUMMARY"
