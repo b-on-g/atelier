@@ -4846,7 +4846,7 @@ declare namespace $ {
     const $bog_atelier_glyph_band = 0.13;
     const $bog_atelier_glyph_core = 0.42;
     const $bog_atelier_glyph_accept = 0.09;
-    const $bog_atelier_glyph_margin = 1.3;
+    const $bog_atelier_glyph_margin = 1.15;
     const $bog_atelier_glyph_flip = 1.25;
     const $bog_atelier_glyph_closure: number;
     function $bog_atelier_glyph_templates(kind: $bog_atelier_lexicon_kind): readonly $bog_atelier_read_template[];
