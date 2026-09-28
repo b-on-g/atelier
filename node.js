@@ -18475,11 +18475,11 @@ var $;
 		mark_text(id){
 			return "";
 		}
-		mark_font(){
-			return 0.09;
-		}
 		mark_known(id){
 			return true;
+		}
+		mark_font(id){
+			return 0.08;
 		}
 		cast_lines(){
 			return [];
@@ -18527,11 +18527,10 @@ var $;
 			(obj.pos_x) = () => ((this.mark_x(id)));
 			(obj.pos_y) = () => ((this.mark_y(id)));
 			(obj.text) = () => ((this.mark_text(id)));
-			(obj.font_size) = () => ((this.mark_font()));
 			(obj.attr) = () => ({
 				...(this.$.$mol_svg_text.prototype.attr.call(obj)), 
 				"bog_atelier_stage_known": (this.mark_known(id)), 
-				"font-size": (this.mark_font())
+				"font-size": (this.mark_font(id))
 			});
 			return obj;
 		}
@@ -18620,8 +18619,15 @@ var $;
             mark_spot(index) {
                 const ring = this.reading().ring;
                 const mark = this.mark(index);
-                const lift = mark.kind === 'sigil' ? mark.size / 2 + 0.08 : 0;
-                return [ring.x + mark.x * ring.r, ring.y + (mark.y - lift) * ring.r];
+                if (mark.kind === 'sigil')
+                    return [ring.x + mark.x * ring.r, ring.y + (mark.y - mark.size / 2 - 0.08) * ring.r];
+                const reach = Math.max(0.2, Math.hypot(mark.x, mark.y) - mark.size * 0.5 - 0.1);
+                return [ring.x + Math.cos(mark.angle) * reach * ring.r, ring.y + (Math.sin(mark.angle) * reach + 0.02) * ring.r];
+            }
+            mark_font(index) {
+                const ring = this.reading().ring;
+                const mark = this.mark(index);
+                return (mark?.kind === 'sigil' ? 0.085 : 0.06) * (ring?.r ?? 1);
             }
             mark_x(index) {
                 return String(this.mark_spot(index)[0]);

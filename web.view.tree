@@ -394,11 +394,10 @@ $bog_atelier_stage $mol_view
 		pos_x <= mark_x* \
 		pos_y <= mark_y* \
 		text <= mark_text* \
-		font_size <= mark_font 0.09
 		attr *
 			^
 			bog_atelier_stage_known <= mark_known* true
-			font-size <= mark_font
+			font-size <= mark_font* 0.08
 	Cast $bog_atelier_cast
 		lines <= cast_lines /
 		spell <= spell null

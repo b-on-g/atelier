@@ -5476,12 +5476,7 @@ declare namespace $ {
 		,
 		ReturnType< $mol_svg_text['text'] >
 	>
-	type $mol_svg_text__font_size_bog_atelier_stage_11 = $mol_type_enforce<
-		ReturnType< $bog_atelier_stage['mark_font'] >
-		,
-		ReturnType< $mol_svg_text['font_size'] >
-	>
-	type $mol_svg_text__attr_bog_atelier_stage_12 = $mol_type_enforce<
+	type $mol_svg_text__attr_bog_atelier_stage_11 = $mol_type_enforce<
 		({ 
 			'bog_atelier_stage_known': ReturnType< $bog_atelier_stage['mark_known'] >,
 			'font-size': ReturnType< $bog_atelier_stage['mark_font'] >,
@@ -5489,17 +5484,17 @@ declare namespace $ {
 		,
 		ReturnType< $mol_svg_text['attr'] >
 	>
-	type $bog_atelier_cast__lines_bog_atelier_stage_13 = $mol_type_enforce<
+	type $bog_atelier_cast__lines_bog_atelier_stage_12 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['cast_lines'] >
 		,
 		ReturnType< $bog_atelier_cast['lines'] >
 	>
-	type $bog_atelier_cast__spell_bog_atelier_stage_14 = $mol_type_enforce<
+	type $bog_atelier_cast__spell_bog_atelier_stage_13 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['spell'] >
 		,
 		ReturnType< $bog_atelier_cast['spell'] >
 	>
-	type $bog_atelier_cast__cast_key_bog_atelier_stage_15 = $mol_type_enforce<
+	type $bog_atelier_cast__cast_key_bog_atelier_stage_14 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['cast_key'] >
 		,
 		ReturnType< $bog_atelier_cast['cast_key'] >
@@ -5516,8 +5511,8 @@ declare namespace $ {
 		mark_x( id: any): string
 		mark_y( id: any): string
 		mark_text( id: any): string
-		mark_font( ): number
 		mark_known( id: any): boolean
+		mark_font( id: any): number
 		cast_lines( ): readonly(any)[]
 		spell( ): any
 		lines( next?: readonly(any)[] ): readonly(any)[]
@@ -5552,6 +5547,7 @@ declare namespace $.$$ {
         marks(): ($mol_svg_path | $.$mol_svg_text)[];
         mark(index: number): $bog_atelier_glyph_mark;
         mark_spot(index: number): readonly [number, number];
+        mark_font(index: number): number;
         mark_x(index: number): string;
         mark_y(index: number): string;
         mark_known(index: number): boolean;
