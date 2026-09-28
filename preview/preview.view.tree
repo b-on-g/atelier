@@ -1,0 +1,6 @@
+$bog_atelier_preview $mol_svg_root
+	view_box \-1.1 -1.1 2.2 2.2
+	lines /
+	sub /
+		<= Ink $mol_svg_path
+			geometry <= geometry \

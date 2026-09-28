@@ -1,0 +1,15 @@
+[bog_atelier_preview] {
+	width: 6rem;
+	height: 6rem;
+	flex: none;
+	background: var(--bog_atelier_paper);
+	border-radius: 0.5rem;
+}
+
+[bog_atelier_preview_ink] {
+	fill: none;
+	stroke: var(--bog_atelier_ink);
+	stroke-width: 0.03;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
