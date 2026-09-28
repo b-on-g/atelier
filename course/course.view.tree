@@ -1,0 +1,49 @@
+$bog_atelier_course $mol_view
+	sub /
+		<= Menu $mol_list
+			rows <= menu_rows /
+		<= Lesson $mol_list
+			rows /
+				<= Head $mol_view
+					sub /
+						<= Number $mol_paragraph
+							title <= number \
+						<= Title $mol_paragraph
+							title <= lesson_title \
+						<= Source $mol_paragraph
+							title <= lesson_source \
+				<= Text $mol_paragraph
+					title <= lesson_text \
+				<= Stage $bog_atelier_stage
+					base <= base /
+					guide <= guide /
+					lines? <=> lines? /
+					cast_key <= cast_key 0
+				<= Result $mol_list
+					rows <= result_rows /
+				<= Actions $mol_view
+					sub <= actions /
+	Hint $mol_paragraph
+		title @ \Дорисуй кольцо в подсвеченном месте: пером, пальцем или мышью.
+	Result_line* $mol_paragraph
+		title <= result_line* \
+	Again $mol_button_minor
+		title @ \Стереть дорисованное
+		click? <=> again? null
+	Next $mol_button_major
+		title @ \Следующий глиф →
+		click? <=> next? null
+	Finish $mol_paragraph
+		title @ \Курс пройден. Теперь рисуй свои глифы на чистом листе.
+	Item* $mol_button_minor
+		click? <=> pick*? null
+		enabled <= item_open* true
+		attr *
+			^
+			bog_atelier_course_item_done <= item_done* false
+			bog_atelier_course_item_current <= item_current* false
+		sub /
+			<= Item_mark* $mol_view
+				sub / <= item_mark* \
+			<= Item_title* $mol_view
+				sub / <= item_title* \

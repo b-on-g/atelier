@@ -18,4 +18,4 @@ $bog_atelier_app $mol_page
 	body <= screen_body /
 	Sheet $bog_atelier_workshop
 	Book $bog_atelier_grimoire
-	Course $mol_view
+	Course $bog_atelier_course

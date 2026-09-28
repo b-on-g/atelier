@@ -1,0 +1,33 @@
+name: $bog_atelier
+
+permissions: write-all
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: hyoo-ru/mam_build@master2
+      with:
+        package: 'bog/atelier'
+        modules: 'app'
+
+    - uses: hyoo-ru/gh-deploy@v4.4.1
+      if: github.ref == 'refs/heads/main'
+      with:
+        folder: 'bog/atelier/app/-'
+
+    - name: URL
+      if: github.ref == 'refs/heads/main'
+      run: echo "- app: https://b-on-g.github.io/atelier/" >> "$GITHUB_STEP_SUMMARY"

@@ -214,6 +214,7 @@ namespace $ {
 	export function $bog_atelier_ink_path( line: $bog_atelier_ink_line ) {
 		if( line.length < 2 ) return ''
 		const r = ( v: number )=> Math.round( v * 1000 ) / 1000
+		if( $bog_atelier_ink_length( line ) / ( line.length / 2 - 1 ) > 0.03 ) return $bog_atelier_ink_poly( line )
 		if( line.length < 6 ) {
 			return `M${ r( line[ 0 ] ) } ${ r( line[ 1 ] ) }L${ r( line[ line.length - 2 ] ) } ${ r( line[ line.length - 1 ] ) }`
 		}
