@@ -59,11 +59,10 @@ namespace $.$$ {
 		}
 
 		break() {
-			const lines = this.lines()
-			const ring = this.reading().ring_lines
-			const last = [ ... ring ].sort( ( a, b )=> b - a )[ 0 ]
-			if( last === undefined ) return this.undo()
-			this.lines( lines.filter( ( _, i )=> i !== last ) )
+			const reading = this.reading()
+			const ring = reading.ring
+			if( !ring ) return
+			this.lines( $bog_atelier_share_open( this.lines(), reading.ring_lines, ring.x, ring.y, ring.gap_at ) )
 		}
 
 		@ $mol_mem
