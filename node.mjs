@@ -17715,9 +17715,9 @@ var $;
         const mark_neat = marks.length
             ? marks.reduce((sum, mark) => sum + clamp(1 - mark.distance / $bog_atelier_glyph_accept), 0) / marks.length
             : 0;
-        const ring_neat = clamp(1 - ring.wobble / 0.08);
+        const ring_neat = clamp(1 - ring.wobble / 0.04);
         spell.neat = clamp(ring_neat * 0.6 + mark_neat * 0.4 - reading.stray.length * 0.12);
-        spell.life = 3 + 57 * spell.neat ** 2;
+        spell.life = 3 + 57 * spell.neat ** 3;
         const scale = clamp(ring.r / sheet, 0.25, 1.2);
         const sigil_scale = sigil ? clamp(sigil.size / $bog_atelier_glyph_sigil_size, 0.4, 1.4) : 0;
         spell.power = entry ? clamp(scale * (0.55 + 0.45 * sigil_scale), 0, 1.3) : 0;
@@ -18673,6 +18673,9 @@ var $;
 		spell(){
 			return null;
 		}
+		cast_spent(next){
+			return (this.Cast().spent(next));
+		}
 		lines(next){
 			if(next !== undefined) return next;
 			return [];
@@ -18691,6 +18694,9 @@ var $;
 		}
 		reading(){
 			return null;
+		}
+		spent(){
+			return false;
 		}
 		sub(){
 			return (this.layers());
@@ -18762,6 +18768,9 @@ var $;
             }
             layers() {
                 return this.closed() && this.casting() ? [this.Cast()] : [this.Desk()];
+            }
+            spent() {
+                return this.closed() && this.casting() && this.cast_spent();
             }
             drawing() {
                 return !this.closed() || !this.casting();
@@ -19558,6 +19567,9 @@ var $;
 		status_cast(){
 			return (this.$.$mol_locale.text("$bog_atelier_workshop_status_cast"));
 		}
+		status_spent(){
+			return (this.$.$mol_locale.text("$bog_atelier_workshop_status_spent"));
+		}
 		Undo(){
 			const obj = new this.$.$mol_button_minor();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_atelier_workshop_Undo_title")));
@@ -19821,7 +19833,7 @@ var $;
                 if (!ring)
                     return this.status_empty();
                 if (reading.closed)
-                    return this.status_cast();
+                    return this.Stage().spent() ? this.status_spent() : this.status_cast();
                 const degrees = Math.round(ring.gap * 180 / Math.PI);
                 return this.status_open().replace('{gap}', String(degrees));
             }
@@ -23170,6 +23182,11 @@ var $;
 		sub(){
 			return [(this.Menu()), (this.Lesson())];
 		}
+		Spent(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_atelier_course_Spent_title")));
+			return obj;
+		}
 		Hint(){
 			const obj = new this.$.$mol_paragraph();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_atelier_course_Hint_title")));
@@ -23226,6 +23243,7 @@ var $;
 	($mol_mem_key(($.$bog_atelier_course.prototype), "pick"));
 	($mol_mem_key(($.$bog_atelier_course.prototype), "Item_mark"));
 	($mol_mem_key(($.$bog_atelier_course.prototype), "Item_title"));
+	($mol_mem(($.$bog_atelier_course.prototype), "Spent"));
 	($mol_mem(($.$bog_atelier_course.prototype), "Hint"));
 	($mol_mem_key(($.$bog_atelier_course.prototype), "Result_line"));
 	($mol_mem(($.$bog_atelier_course.prototype), "Again"));
@@ -23386,7 +23404,7 @@ var $;
             sigil: 'fire',
             signs: ring_of('column', 4, 45 * deg),
             gap_at: 60 * deg,
-            shaky: 0.03,
+            shaky: 0.045,
         },
     ];
     $.$bog_atelier_course_scale = 0.95;
@@ -23495,7 +23513,10 @@ var $;
             result_rows() {
                 if (!this.closed())
                     return [this.Hint()];
-                return this.result().map((_, i) => this.Result_line(i));
+                return [
+                    ...this.result().map((_, i) => this.Result_line(i)),
+                    ...this.Stage().spent() ? [this.Spent()] : [],
+                ];
             }
             result_line(index) {
                 return this.result()[index];

@@ -380,6 +380,7 @@ $bog_atelier_stage $mol_view
 	cast_key 0
 	casting true
 	reading null
+	spent false
 	sub <= layers /
 	Desk $bog_atelier_desk
 		lines? <=> lines?
@@ -404,6 +405,7 @@ $bog_atelier_stage $mol_view
 		lines <= cast_lines /
 		spell <= spell null
 		cast_key <= cast_key
+		spent? => cast_spent?
 
 $mol_paragraph $mol_view
 	line_height 24
@@ -478,6 +480,7 @@ $bog_atelier_workshop $mol_view
 	status_empty @ \Начните с кольца: обведите лист по кругу пером или мышью. Можно взять кольцо из палитры.
 	status_open @ \Кольцо разомкнуто, разрыв {gap}°. Нарисуйте сигил в центре и знаки по краю, затем замкните кольцо.
 	status_cast @ \Кольцо замкнуто, чернила ожили.
+	status_spent @ \Глиф выдохся. Разорви кольцо и замкни его снова, чтобы зажечь заново.
 	Undo $mol_button_minor
 		title @ \Отменить штрих
 		click? <=> undo? null
@@ -941,6 +944,8 @@ $bog_atelier_course $mol_view
 					rows <= result_rows /
 				<= Actions $mol_view
 					sub <= actions /
+	Spent $mol_paragraph
+		title @ \Глиф выдохся. Нажми «Стереть дорисованное» и замкни кольцо заново.
 	Hint $mol_paragraph
 		title @ \Дорисуй кольцо в подсвеченном месте: пером, пальцем или мышью.
 	Result_line* $mol_paragraph

@@ -5380,47 +5380,52 @@ declare namespace $ {
 		,
 		ReturnType< $mol_svg_path['geometry'] >
 	>
-	type $bog_atelier_desk__lines_bog_atelier_stage_3 = $mol_type_enforce<
+	type __bog_atelier_stage_3 = $mol_type_enforce<
+		Parameters< $bog_atelier_stage['cast_spent'] >[0]
+		,
+		Parameters< ReturnType< $bog_atelier_stage['Cast'] >['spent'] >[0]
+	>
+	type $bog_atelier_desk__lines_bog_atelier_stage_4 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['lines'] >
 		,
 		ReturnType< $bog_atelier_desk['lines'] >
 	>
-	type $bog_atelier_desk__enabled_bog_atelier_stage_4 = $mol_type_enforce<
+	type $bog_atelier_desk__enabled_bog_atelier_stage_5 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['drawing'] >
 		,
 		ReturnType< $bog_atelier_desk['enabled'] >
 	>
-	type $bog_atelier_desk__under_bog_atelier_stage_5 = $mol_type_enforce<
+	type $bog_atelier_desk__under_bog_atelier_stage_6 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $bog_atelier_desk['under'] >
 	>
-	type $bog_atelier_desk__over_bog_atelier_stage_6 = $mol_type_enforce<
+	type $bog_atelier_desk__over_bog_atelier_stage_7 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['marks'] >
 		,
 		ReturnType< $bog_atelier_desk['over'] >
 	>
-	type $mol_svg_path__geometry_bog_atelier_stage_7 = $mol_type_enforce<
+	type $mol_svg_path__geometry_bog_atelier_stage_8 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['gap_path'] >
 		,
 		ReturnType< $mol_svg_path['geometry'] >
 	>
-	type $mol_svg_text__pos_x_bog_atelier_stage_8 = $mol_type_enforce<
+	type $mol_svg_text__pos_x_bog_atelier_stage_9 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['mark_x'] >
 		,
 		ReturnType< $mol_svg_text['pos_x'] >
 	>
-	type $mol_svg_text__pos_y_bog_atelier_stage_9 = $mol_type_enforce<
+	type $mol_svg_text__pos_y_bog_atelier_stage_10 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['mark_y'] >
 		,
 		ReturnType< $mol_svg_text['pos_y'] >
 	>
-	type $mol_svg_text__text_bog_atelier_stage_10 = $mol_type_enforce<
+	type $mol_svg_text__text_bog_atelier_stage_11 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['mark_text'] >
 		,
 		ReturnType< $mol_svg_text['text'] >
 	>
-	type $mol_svg_text__attr_bog_atelier_stage_11 = $mol_type_enforce<
+	type $mol_svg_text__attr_bog_atelier_stage_12 = $mol_type_enforce<
 		({ 
 			'bog_atelier_stage_known': ReturnType< $bog_atelier_stage['mark_known'] >,
 			'font-size': ReturnType< $bog_atelier_stage['mark_font'] >,
@@ -5428,17 +5433,17 @@ declare namespace $ {
 		,
 		ReturnType< $mol_svg_text['attr'] >
 	>
-	type $bog_atelier_cast__lines_bog_atelier_stage_12 = $mol_type_enforce<
+	type $bog_atelier_cast__lines_bog_atelier_stage_13 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['cast_lines'] >
 		,
 		ReturnType< $bog_atelier_cast['lines'] >
 	>
-	type $bog_atelier_cast__spell_bog_atelier_stage_13 = $mol_type_enforce<
+	type $bog_atelier_cast__spell_bog_atelier_stage_14 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['spell'] >
 		,
 		ReturnType< $bog_atelier_cast['spell'] >
 	>
-	type $bog_atelier_cast__cast_key_bog_atelier_stage_14 = $mol_type_enforce<
+	type $bog_atelier_cast__cast_key_bog_atelier_stage_15 = $mol_type_enforce<
 		ReturnType< $bog_atelier_stage['cast_key'] >
 		,
 		ReturnType< $bog_atelier_cast['cast_key'] >
@@ -5459,12 +5464,14 @@ declare namespace $ {
 		mark_font( id: any): number
 		cast_lines( ): readonly(any)[]
 		spell( ): any
+		cast_spent( next?: ReturnType< ReturnType< $bog_atelier_stage['Cast'] >['spent'] > ): ReturnType< ReturnType< $bog_atelier_stage['Cast'] >['spent'] >
 		lines( next?: readonly(any)[] ): readonly(any)[]
 		base( ): readonly(any)[]
 		guide( ): readonly(any)[]
 		cast_key( ): number
 		casting( ): boolean
 		reading( ): any
+		spent( ): boolean
 		sub( ): ReturnType< $bog_atelier_stage['layers'] >
 		Desk( ): $bog_atelier_desk
 		Gap( ): $mol_svg_path
@@ -5482,6 +5489,7 @@ declare namespace $.$$ {
         spell(): $bog_atelier_spell;
         closed(): boolean;
         layers(): $.$bog_atelier_cast[] | $.$bog_atelier_desk[];
+        spent(): boolean;
         drawing(): boolean;
         cast_lines(): number[][];
         base_path(): string;
@@ -5918,6 +5926,7 @@ declare namespace $ {
 		status_empty( ): string
 		status_open( ): string
 		status_cast( ): string
+		status_spent( ): string
 		Undo( ): $mol_button_minor
 		Clear( ): $mol_button_minor
 		Break( ): $mol_button_major
@@ -7856,46 +7865,51 @@ declare namespace $ {
 		ReturnType< $mol_paragraph['title'] >
 	>
 	type $mol_paragraph__title_bog_atelier_course_17 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_paragraph__title_bog_atelier_course_18 = $mol_type_enforce<
 		ReturnType< $bog_atelier_course['result_line'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_button_minor__title_bog_atelier_course_18 = $mol_type_enforce<
+	type $mol_button_minor__title_bog_atelier_course_19 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_atelier_course_19 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_atelier_course_20 = $mol_type_enforce<
 		ReturnType< $bog_atelier_course['again'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_major__title_bog_atelier_course_20 = $mol_type_enforce<
+	type $mol_button_major__title_bog_atelier_course_21 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_major['title'] >
 	>
-	type $mol_button_major__click_bog_atelier_course_21 = $mol_type_enforce<
+	type $mol_button_major__click_bog_atelier_course_22 = $mol_type_enforce<
 		ReturnType< $bog_atelier_course['next'] >
 		,
 		ReturnType< $mol_button_major['click'] >
 	>
-	type $mol_paragraph__title_bog_atelier_course_22 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_atelier_course_23 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_button_minor__click_bog_atelier_course_23 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_atelier_course_24 = $mol_type_enforce<
 		ReturnType< $bog_atelier_course['pick'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__enabled_bog_atelier_course_24 = $mol_type_enforce<
+	type $mol_button_minor__enabled_bog_atelier_course_25 = $mol_type_enforce<
 		ReturnType< $bog_atelier_course['item_open'] >
 		,
 		ReturnType< $mol_button_minor['enabled'] >
 	>
-	type $mol_button_minor__attr_bog_atelier_course_25 = $mol_type_enforce<
+	type $mol_button_minor__attr_bog_atelier_course_26 = $mol_type_enforce<
 		({ 
 			'bog_atelier_course_item_done': ReturnType< $bog_atelier_course['item_done'] >,
 			'bog_atelier_course_item_current': ReturnType< $bog_atelier_course['item_current'] >,
@@ -7903,7 +7917,7 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['attr'] >
 	>
-	type $mol_button_minor__sub_bog_atelier_course_26 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_atelier_course_27 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
@@ -7942,6 +7956,7 @@ declare namespace $ {
 		item_title( id: any): string
 		Item_title( id: any): $mol_view
 		sub( ): readonly(any)[]
+		Spent( ): $mol_paragraph
 		Hint( ): $mol_paragraph
 		Result_line( id: any): $mol_paragraph
 		Again( ): $mol_button_minor
