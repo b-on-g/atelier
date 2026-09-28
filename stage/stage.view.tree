@@ -5,6 +5,7 @@ $bog_atelier_stage $mol_view
 	cast_key 0
 	casting true
 	reading null
+	spent false
 	sub <= layers /
 	Desk $bog_atelier_desk
 		lines? <=> lines?
@@ -29,3 +30,4 @@ $bog_atelier_stage $mol_view
 		lines <= cast_lines /
 		spell <= spell null
 		cast_key <= cast_key
+		spent? => cast_spent?

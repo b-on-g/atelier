@@ -26,6 +26,10 @@ namespace $.$$ {
 			return this.closed() && this.casting() ? [ this.Cast() ] : [ this.Desk() ]
 		}
 
+		spent() {
+			return this.closed() && this.casting() && this.cast_spent()
+		}
+
 		drawing() {
 			return !this.closed() || !this.casting()
 		}

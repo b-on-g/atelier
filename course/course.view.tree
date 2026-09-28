@@ -23,6 +23,8 @@ $bog_atelier_course $mol_view
 					rows <= result_rows /
 				<= Actions $mol_view
 					sub <= actions /
+	Spent $mol_paragraph
+		title @ \Глиф выдохся. Нажми «Стереть дорисованное» и замкни кольцо заново.
 	Hint $mol_paragraph
 		title @ \Дорисуй кольцо в подсвеченном месте: пером, пальцем или мышью.
 	Result_line* $mol_paragraph

@@ -78,7 +78,7 @@ namespace $.$$ {
 			const reading = this.reading()
 			const ring = reading.ring
 			if( !ring ) return this.status_empty()
-			if( reading.closed ) return this.status_cast()
+			if( reading.closed ) return this.Stage().spent() ? this.status_spent() : this.status_cast()
 			const degrees = Math.round( ring.gap * 180 / Math.PI )
 			return this.status_open().replace( '{gap}', String( degrees ) )
 		}

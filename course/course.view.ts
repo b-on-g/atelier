@@ -98,7 +98,10 @@ namespace $.$$ {
 		@ $mol_mem
 		result_rows() {
 			if( !this.closed() ) return [ this.Hint() ]
-			return this.result().map( ( _, i )=> this.Result_line( i ) )
+			return [
+				... this.result().map( ( _, i )=> this.Result_line( i ) ),
+				... this.Stage().spent() ? [ this.Spent() ] : [],
+			]
 		}
 
 		result_line( index: number ) {

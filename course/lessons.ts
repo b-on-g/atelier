@@ -167,7 +167,7 @@ namespace $ {
 			sigil: 'fire',
 			signs: ring_of( 'column', 4, 45 * deg ),
 			gap_at: 60 * deg,
-			shaky: 0.03,
+			shaky: 0.045,
 		},
 	]
 

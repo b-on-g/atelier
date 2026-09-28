@@ -55,9 +55,9 @@ namespace $ {
 		const mark_neat = marks.length
 			? marks.reduce( ( sum, mark )=> sum + clamp( 1 - mark.distance / $bog_atelier_glyph_accept ), 0 ) / marks.length
 			: 0
-		const ring_neat = clamp( 1 - ring.wobble / 0.08 )
+		const ring_neat = clamp( 1 - ring.wobble / 0.04 )
 		spell.neat = clamp( ring_neat * 0.6 + mark_neat * 0.4 - reading.stray.length * 0.12 )
-		spell.life = 3 + 57 * spell.neat ** 2
+		spell.life = 3 + 57 * spell.neat ** 3
 
 		const scale = clamp( ring.r / sheet, 0.25, 1.2 )
 		const sigil_scale = sigil ? clamp( sigil.size / $bog_atelier_glyph_sigil_size, 0.4, 1.4 ) : 0
