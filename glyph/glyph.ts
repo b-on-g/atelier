@@ -8,6 +8,7 @@ namespace $ {
 		y: number
 		angle: number
 		size: number
+		inverted: boolean
 		distance: number
 		rank: readonly { id: string, distance: number }[]
 	}
@@ -35,6 +36,7 @@ namespace $ {
 	export const $bog_atelier_glyph_core = 0.42
 	export const $bog_atelier_glyph_accept = 0.09
 	export const $bog_atelier_glyph_margin = 1.3
+	export const $bog_atelier_glyph_flip = 1.25
 	export const $bog_atelier_glyph_closure = 2 * Math.PI / 180
 
 	let templates_cache = new Map< string, readonly $bog_atelier_read_template[] >()
@@ -144,20 +146,27 @@ namespace $ {
 		const angle = Math.atan2( y, x )
 		const kind: $bog_atelier_lexicon_kind = Math.hypot( x, y ) < $bog_atelier_glyph_core ? 'sigil' : 'sign'
 		let rank: { id: string, distance: number }[]
+		let inverted = false
 		if( kind === 'sigil' ) {
 			rank = $bog_atelier_read_rank( $bog_atelier_read_cloud( local ), $bog_atelier_glyph_templates( 'sigil' ) )
 		} else {
-			const best = new Map< string, number >()
-			for( const twist of [ -0.2, 0, 0.2 ] ) {
-				const turn = Math.PI / 2 - angle + twist
-				const posed = local.map( line => $bog_atelier_ink_move( line, 0, 0, 1, turn ) )
-				for( const one of $bog_atelier_read_rank( $bog_atelier_read_cloud( posed ), $bog_atelier_glyph_templates( 'sign' ) ) ) {
-					best.set( one.id, Math.min( best.get( one.id ) ?? Infinity, one.distance ) )
+			const upright = new Map< string, number >()
+			const upside = new Map< string, number >()
+			for( const flip of [ 0, Math.PI ] ) {
+				const best = flip ? upside : upright
+				for( const twist of [ -0.2, 0, 0.2 ] ) {
+					const turn = Math.PI / 2 - angle + twist + flip
+					const posed = local.map( line => $bog_atelier_ink_move( line, 0, 0, 1, turn ) )
+					for( const one of $bog_atelier_read_rank( $bog_atelier_read_cloud( posed ), $bog_atelier_glyph_templates( 'sign' ) ) ) {
+						best.set( one.id, Math.min( best.get( one.id ) ?? Infinity, one.distance ) )
+					}
 				}
 			}
-			rank = [ ... best ].map( ( [ id, distance ] )=> ( { id, distance } ) ).sort( ( a, b )=> a.distance - b.distance )
+			rank = [ ... upright ].map( ( [ id, distance ] )=> ( { id, distance: Math.min( distance, upside.get( id ) ?? Infinity ) } ) ).sort( ( a, b )=> a.distance - b.distance )
+			const top = rank[ 0 ]
+			if( top ) inverted = ( upside.get( top.id ) ?? Infinity ) * $bog_atelier_glyph_flip < ( upright.get( top.id ) ?? Infinity )
 		}
-		return { kind, id: pick( rank ), lines: group, x, y, angle, size, distance: rank[ 0 ]?.distance ?? Infinity, rank: rank.slice( 0, 3 ) }
+		return { kind, id: pick( rank ), lines: group, x, y, angle, size, inverted, distance: rank[ 0 ]?.distance ?? Infinity, rank: rank.slice( 0, 3 ) }
 	}
 
 	export const $bog_atelier_glyph_sigil_size = 0.52
@@ -170,12 +179,12 @@ namespace $ {
 		return entry.strokes.map( line => $bog_atelier_ink_move( line, 0, 0, size ) )
 	}
 
-	export function $bog_atelier_glyph_sign( id: string, angle: number, orbit = $bog_atelier_glyph_sign_orbit, size = $bog_atelier_glyph_sign_size ) {
+	export function $bog_atelier_glyph_sign( id: string, angle: number, orbit = $bog_atelier_glyph_sign_orbit, size = $bog_atelier_glyph_sign_size, inverted = false ) {
 		const entry = $bog_atelier_lexicon_entry( id )
 		if( !entry ) return []
 		const x = Math.cos( angle ) * orbit
 		const y = Math.sin( angle ) * orbit
-		return entry.strokes.map( line => $bog_atelier_ink_move( line, x, y, size, angle - Math.PI / 2 ) )
+		return entry.strokes.map( line => $bog_atelier_ink_move( line, x, y, size, angle - Math.PI / 2 + ( inverted ? Math.PI : 0 ) ) )
 	}
 
 	export function $bog_atelier_glyph_circle( gap = 0, gap_at = -Math.PI / 2, r = 1 ) {

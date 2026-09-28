@@ -1,0 +1,31 @@
+$bog_atelier_grimoire $mol_list
+	rows /
+		<= Intro $mol_text
+			text <= intro @ \
+				\Глиф состоит из трёх частей. **Кольцо** держит магию: пока оно разомкнуто, ничего не происходит, стоит замкнуть — чернила оживают. **Сигил** в центре выбирает стихию. **Знаки** по краю кольца говорят, куда и как она пойдёт.
+				\
+				\Метка «канон» значит, что символ и его действие есть в манге. «Домысел» — символ встречается у фанатов, а действие додумано.
+		<= Sigils_title $mol_paragraph
+			title @ \Сигилы
+		<= Sigils $mol_list
+			rows <= sigil_rows /
+		<= Signs_title $mol_paragraph
+			title @ \Знаки
+		<= Signs $mol_list
+			rows <= sign_rows /
+	Entry* $mol_view
+		sub /
+			<= Icon* $bog_atelier_icon
+				entry_id <= entry_id* \
+			<= Text* $mol_list
+				rows /
+					<= Name* $mol_view
+						sub /
+							<= Title* $mol_paragraph
+								title <= entry_title* \
+							<= Canon* $mol_paragraph
+								title <= entry_canon* \
+					<= Note* $mol_paragraph
+						title <= entry_note* \
+	canon_manga @ \канон
+	canon_fan @ \домысел

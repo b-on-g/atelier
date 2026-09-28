@@ -1,0 +1,59 @@
+[bog_atelier_stage] {
+	position: relative;
+	aspect-ratio: 1;
+	width: 100%;
+	max-width: min( 100%, 80vh );
+	margin: 0 auto;
+}
+
+[bog_atelier_stage] > * {
+	width: 100%;
+	height: 100%;
+}
+
+[bog_atelier_stage_base] {
+	fill: none;
+	stroke: var(--bog_atelier_ink);
+	stroke-width: 0.014;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+[bog_atelier_stage_guide] {
+	fill: none;
+	stroke: var(--bog_atelier_accent);
+	stroke-width: 0.012;
+	stroke-dasharray: 0.03 0.04;
+	stroke-linecap: round;
+	opacity: 0.8;
+	animation: bog_atelier_stage_breath 1.6s ease-in-out infinite;
+}
+
+[bog_atelier_stage_gap] {
+	fill: none;
+	stroke: var(--bog_atelier_accent);
+	stroke-width: 0.05;
+	stroke-linecap: round;
+	opacity: 0.35;
+	animation: bog_atelier_stage_breath 1.2s ease-in-out infinite;
+	pointer-events: none;
+}
+
+[bog_atelier_stage_mark] {
+	fill: var(--bog_atelier_ink_soft);
+	font-family: Georgia, 'Times New Roman', serif;
+	font-style: italic;
+	pointer-events: none;
+	paint-order: stroke;
+	stroke: var(--bog_atelier_paper);
+	stroke-width: 0.02;
+}
+
+[bog_atelier_stage_known="false"] {
+	fill: var(--bog_atelier_warn);
+}
+
+@keyframes bog_atelier_stage_breath {
+	0%, 100% { opacity: 0.35 }
+	50% { opacity: 0.9 }
+}

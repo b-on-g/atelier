@@ -1,0 +1,93 @@
+$bog_atelier_cast $mol_view
+	lines /
+	spell null
+	cast_key 0
+	sub /
+		<= Draw $bog_gamengine_draw
+			scene <= Scene
+			cam <= Eye
+			clear <= clear Float32Array
+			ambient 0.18
+			shadows? false
+			passes /
+				<= Bloom $bog_gamengine_shader_post_bloom
+				<= Tone $bog_gamengine_shader_post_tone
+				<= Vignette $bog_gamengine_shader_post_vignette
+	Clock $bog_gamengine_clock
+	Scene $bog_gamengine_scene
+		clock <= Clock
+		kids <= nodes /
+		cam <= Eye
+	Eye $bog_gamengine_cam_deep
+		pos <= eye_pos Float32Array
+		rot <= eye_rot Float32Array
+		fov 0.75
+		far 30
+	Art $bog_gamengine_atlas
+		size 1024
+		sources <= art /
+	Dust $bog_gamengine_atlas
+		size 64
+		sources <= dust /
+	Paper $bog_gamengine_mesh
+		shape <= Plane $bog_gamengine_shape_plane
+		atlas <= Art
+		frame \paper
+		size <= paper_size Float32Array
+	Glow $bog_gamengine_sprite
+		atlas <= Art
+		frame \glow
+		size <= glow_size Float32Array
+		pos <= glow_pos Float32Array
+		rot <= flat_rot Float32Array
+	Lamp $bog_gamengine_light
+		kind \point
+		range 7
+		pos <= lamp_pos Float32Array
+	Sun $bog_gamengine_light
+		kind \sun
+		power 0.22
+		rot <= sun_rot Float32Array
+	Flow_pool $bog_gamengine_particle_pool
+		cap 1600
+	Flow $bog_gamengine_particle
+		pool <= Flow_pool
+		atlas <= Dust
+		billboard \sphere
+		frame <= flow_frame \spark
+		pos <= flow_pos Float32Array
+		dir <= flow_dir Float32Array
+		life <= flow_life Float32Array
+		speed <= flow_speed Float32Array
+		spread <= flow_spread 0
+		gravity <= flow_gravity Float32Array
+		size <= flow_size Float32Array
+		color <= flow_color Float32Array
+	Core_pool $bog_gamengine_particle_pool
+		cap 400
+	Core $bog_gamengine_particle
+		pool <= Core_pool
+		atlas <= Dust
+		frame \spark
+		billboard \sphere
+		spread 3.14
+		pos <= core_pos Float32Array
+		life <= core_life Float32Array
+		speed <= core_speed Float32Array
+		size <= core_size Float32Array
+		color <= core_color Float32Array
+	Conductor $bog_atelier_cast_conductor
+		key <= cast_key
+		flow <= Flow
+		core <= Core
+		glow <= Glow
+		lamp <= Lamp
+		flow_rate <= flow_rate 0
+		core_rate <= core_rate 0
+		glow_color <= glow_color Float32Array
+		lamp_color <= lamp_color Float32Array
+		lamp_power <= lamp_power 0
+		neat <= neat 1
+		form <= form \still
+		life <= life 0
+		spent? => spent?

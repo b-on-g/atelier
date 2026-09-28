@@ -1,0 +1,21 @@
+$bog_atelier_app $mol_page
+	title @ \Ателье глифов
+	plugins /
+		<= Theme $mol_theme_auto
+	head /
+		<= Title
+		<= Nav $mol_switch
+			value? <=> screen? \course
+			options *
+				course @ \Курс
+				sheet @ \Лист
+				book @ \Гримуар
+		<= Tools
+	tools /
+		<= Lights $mol_lights_toggle
+		<= Source $mol_link_source
+			uri \https://github.com/b-on-g/atelier
+	body <= screen_body /
+	Sheet $bog_atelier_workshop
+	Book $bog_atelier_grimoire
+	Course $mol_view

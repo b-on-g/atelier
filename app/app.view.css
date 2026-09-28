@@ -1,0 +1,35 @@
+[bog_atelier_app] {
+	--mol_theme_hue: 40deg;
+	--bog_atelier_paper: #f3e8cf;
+	--bog_atelier_ink: #1f2a4a;
+	--bog_atelier_ink_soft: #4a4060;
+	--bog_atelier_accent: #b8631b;
+	--bog_atelier_warn: #a3322a;
+}
+
+[bog_atelier_app][mol_theme="$mol_theme_light"] {
+	--mol_theme_back: #efe4c9;
+	--mol_theme_card: #f8efdb;
+	--mol_theme_field: #fbf5e6;
+	--mol_theme_text: #2a2233;
+	--mol_theme_line: #7a5a3044;
+}
+
+[bog_atelier_app][mol_theme="$mol_theme_dark"] {
+	--bog_atelier_paper: #2a241c;
+	--bog_atelier_ink: #e6d6ae;
+	--bog_atelier_ink_soft: #cdbb92;
+	--bog_atelier_accent: #f0a050;
+	--bog_atelier_warn: #ff8a70;
+}
+
+[bog_atelier_app_title] {
+	font-family: Georgia, 'Times New Roman', serif;
+	font-style: italic;
+}
+
+[bog_atelier_desk] {
+	background: var(--bog_atelier_paper);
+	border-radius: 0.5rem;
+	box-shadow: 0 0.25rem 1.5rem #0000002e;
+}

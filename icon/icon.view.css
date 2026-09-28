@@ -1,0 +1,13 @@
+[bog_atelier_icon] {
+	width: 2.5rem;
+	height: 2.5rem;
+	flex: none;
+}
+
+[bog_atelier_icon_path] {
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 0.045;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}

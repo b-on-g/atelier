@@ -1,0 +1,32 @@
+$bog_atelier_stage $mol_view
+	lines? /
+	base /
+	guide /
+	cast_key 0
+	casting true
+	reading null
+	sub <= layers /
+	Desk $bog_atelier_desk
+		lines? <=> lines?
+		enabled <= drawing true
+		under /
+			<= Base $mol_svg_path
+				geometry <= base_path \
+			<= Guide $mol_svg_path
+				geometry <= guide_path \
+		over <= marks /
+	Gap $mol_svg_path
+		geometry <= gap_path \
+	Mark* $mol_svg_text
+		pos_x <= mark_x* \
+		pos_y <= mark_y* \
+		text <= mark_text* \
+		font_size <= mark_font 0.09
+		attr *
+			^
+			bog_atelier_stage_known <= mark_known* true
+			font-size <= mark_font
+	Cast $bog_atelier_cast
+		lines <= cast_lines /
+		spell <= spell null
+		cast_key <= cast_key

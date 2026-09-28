@@ -1,0 +1,6 @@
+$bog_atelier_icon $mol_svg_root
+	view_box \-0.62 -0.62 1.24 1.24
+	entry_id \
+	sub /
+		<= Path $mol_svg_path
+			geometry <= geometry \

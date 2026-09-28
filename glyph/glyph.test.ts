@@ -29,6 +29,21 @@ namespace $ {
 			}
 		},
 
+		'upside down sign reads as inverted'() {
+			for( const id of [ 'column', 'crush', 'direction', 'pull', 'levitation' ] ) {
+				const upright = $bog_atelier_glyph_read( glyph( 'earth', [ [ id, 1 ] ] ) ).signs[ 0 ]
+				const lines = hand( [ $bog_atelier_glyph_circle(), ... $bog_atelier_glyph_sigil( 'earth' ), ... $bog_atelier_glyph_sign( id, 1, undefined, undefined, true ) ], 5 )
+				const upside = $bog_atelier_glyph_read( lines ).signs[ 0 ]
+				$mol_assert_equal( [ id, upright?.id, upright?.inverted ], [ id, id, false ] )
+				$mol_assert_equal( [ id, upside?.id, upside?.inverted ], [ id, id, true ] )
+			}
+		},
+
+		'symmetric sign is never inverted'() {
+			const sign = $bog_atelier_glyph_read( glyph( 'water', [ [ 'bolt', 2 ] ] ) ).signs[ 0 ]
+			$mol_assert_equal( [ sign?.id, sign?.inverted ], [ 'bolt', false ] )
+		},
+
 		'closed ring is closed and open ring is not'() {
 			$mol_assert_equal( $bog_atelier_glyph_read( glyph( 'fire', [] ) ).closed, true )
 			$mol_assert_equal( $bog_atelier_glyph_read( glyph( 'fire', [], 0.3 ) ).closed, false )

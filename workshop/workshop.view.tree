@@ -1,0 +1,52 @@
+$bog_atelier_workshop $mol_view
+	sub /
+		<= Stage $bog_atelier_stage
+			lines? <=> lines? /
+			cast_key <= cast_key 0
+		<= Side $mol_list
+			rows /
+				<= Status $mol_paragraph
+					title <= status \
+				<= Story $mol_list
+					rows <= story_rows /
+				<= Tools $mol_view
+					sub <= tools /
+				<= Sigils_head $mol_paragraph
+					title @ \Сигил в центр
+				<= Sigils $mol_view
+					sub <= sigil_stamps /
+				<= Signs_head $mol_paragraph
+					title @ \Знак на кольцо
+				<= Signs $mol_view
+					sub <= sign_stamps /
+	status_empty @ \Начните с кольца: обведите лист по кругу пером или мышью. Можно взять кольцо из палитры.
+	status_open @ \Кольцо разомкнуто, разрыв {gap}°. Нарисуйте сигил в центре и знаки по краю, затем замкните кольцо.
+	status_cast @ \Кольцо замкнуто, чернила ожили.
+	Undo $mol_button_minor
+		title @ \Отменить штрих
+		click? <=> undo? null
+		enabled <= can_undo false
+	Clear $mol_button_minor
+		title @ \Чистый лист
+		click? <=> clear? null
+		enabled <= can_undo false
+	Break $mol_button_major
+		title @ \Разорвать кольцо
+		click? <=> break? null
+	Ring $mol_button_minor
+		title @ \Кольцо
+		click? <=> stamp_ring? null
+	Story_line* $mol_paragraph
+		title <= story_line* \
+	Sigil_stamp* $mol_button_minor
+		hint <= stamp_title* \
+		click? <=> stamp_sigil*? null
+		sub /
+			<= Sigil_icon* $bog_atelier_icon
+				entry_id <= stamp_id* \
+	Sign_stamp* $mol_button_minor
+		hint <= stamp_title* \
+		click? <=> stamp_sign*? null
+		sub /
+			<= Sign_icon* $bog_atelier_icon
+				entry_id <= stamp_id* \
