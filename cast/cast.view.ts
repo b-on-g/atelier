@@ -118,6 +118,10 @@ namespace $.$$ {
 			]
 		}
 
+		draw_dpr() {
+			return Math.min( 2, this.$.$mol_dom_context.devicePixelRatio || 1 )
+		}
+
 		@ $mol_mem
 		clear() {
 			return new Float32Array([ 0.035, 0.03, 0.045, 1 ])

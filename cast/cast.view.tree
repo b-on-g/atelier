@@ -7,6 +7,7 @@ $bog_atelier_cast $mol_view
 			scene <= Scene
 			cam <= Eye
 			clear <= clear Float32Array
+			dpr <= draw_dpr 1
 			ambient 0.18
 			shadows? false
 			passes /
