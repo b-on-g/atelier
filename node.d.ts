@@ -5688,154 +5688,258 @@ declare namespace $ {
 
 //# sourceMappingURL=major.view.tree.d.ts.map
 declare namespace $ {
+    type $mol_blob = Blob;
+    let $mol_blob: {
+        prototype: Blob;
+        new (blobParts?: readonly BlobPart[], options?: BlobPropertyBag): Blob;
+    };
+}
+
+declare namespace $ {
+
+	export class $mol_icon_clipboard extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=clipboard.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_clipboard_outline extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=outline.view.tree.d.ts.map
+declare namespace $ {
+    function $mol_html_encode(text: string): string;
+}
+
+declare namespace $ {
+
+	type $mol_blob__mol_button_copy_1 = $mol_type_enforce<
+		[ readonly(BlobPart)[], ({ 
+			'type': string,
+		})  ]
+		,
+		ConstructorParameters< typeof $mol_blob >
+	>
+	type $mol_blob__mol_button_copy_2 = $mol_type_enforce<
+		[ readonly(BlobPart)[], ({ 
+			'type': string,
+		})  ]
+		,
+		ConstructorParameters< typeof $mol_blob >
+	>
+	export class $mol_button_copy extends $mol_button_minor {
+		text( ): ReturnType< $mol_button_copy['title'] >
+		text_blob( next?: $mol_blob ): $mol_blob
+		html( ): string
+		html_blob( next?: $mol_blob ): $mol_blob
+		Icon( ): $mol_icon_clipboard_outline
+		title( ): string
+		blobs( ): readonly($mol_blob)[]
+		data( ): Record<string, any>
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=copy.view.tree.d.ts.map
+declare namespace $.$$ {
+    /**
+     * Button copy text() value to clipboard
+     * @see https://mol.hyoo.ru/#!section=demos/demo=mol_button_demo
+     */
+    class $mol_button_copy extends $.$mol_button_copy {
+        data(): {
+            [k: string]: Blob;
+        };
+        html(): string;
+        attachments(): ClipboardItem[];
+        click(event?: Event): void;
+    }
+}
+
+declare namespace $ {
+    function $bog_atelier_share_pack(lines: readonly $bog_atelier_ink_line[]): string;
+    function $bog_atelier_share_unpack(text: string): readonly $bog_atelier_ink_line[];
+    function $bog_atelier_share_thin(line: $bog_atelier_ink_line, gap?: number): number[];
+    function $bog_atelier_share_open(lines: readonly $bog_atelier_ink_line[], ring: readonly number[], cx: number, cy: number, at?: number, width?: number): readonly $bog_atelier_ink_line[];
+}
+
+declare namespace $ {
 
 	type $bog_atelier_stage__lines_bog_atelier_workshop_1 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['lines'] >
 		,
 		ReturnType< $bog_atelier_stage['lines'] >
 	>
-	type $bog_atelier_stage__cast_key_bog_atelier_workshop_2 = $mol_type_enforce<
+	type $bog_atelier_stage__guide_bog_atelier_workshop_2 = $mol_type_enforce<
+		ReturnType< $bog_atelier_workshop['guide'] >
+		,
+		ReturnType< $bog_atelier_stage['guide'] >
+	>
+	type $bog_atelier_stage__cast_key_bog_atelier_workshop_3 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['cast_key'] >
 		,
 		ReturnType< $bog_atelier_stage['cast_key'] >
 	>
-	type $mol_paragraph__title_bog_atelier_workshop_3 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_atelier_workshop_4 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['status'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_list__rows_bog_atelier_workshop_4 = $mol_type_enforce<
+	type $mol_list__rows_bog_atelier_workshop_5 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['story_rows'] >
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_view__sub_bog_atelier_workshop_5 = $mol_type_enforce<
+	type $mol_view__sub_bog_atelier_workshop_6 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['tools'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_atelier_workshop_6 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_atelier_workshop_7 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_atelier_workshop_7 = $mol_type_enforce<
+	type $mol_view__sub_bog_atelier_workshop_8 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['sigil_stamps'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_atelier_workshop_8 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_atelier_workshop_9 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_atelier_workshop_9 = $mol_type_enforce<
+	type $mol_view__sub_bog_atelier_workshop_10 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['sign_stamps'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_list__rows_bog_atelier_workshop_10 = $mol_type_enforce<
+	type $mol_list__rows_bog_atelier_workshop_11 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
-	>
-	type $bog_atelier_icon__entry_id_bog_atelier_workshop_11 = $mol_type_enforce<
-		ReturnType< $bog_atelier_workshop['stamp_id'] >
-		,
-		ReturnType< $bog_atelier_icon['entry_id'] >
 	>
 	type $bog_atelier_icon__entry_id_bog_atelier_workshop_12 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['stamp_id'] >
 		,
 		ReturnType< $bog_atelier_icon['entry_id'] >
 	>
-	type $mol_button_minor__title_bog_atelier_workshop_13 = $mol_type_enforce<
+	type $bog_atelier_icon__entry_id_bog_atelier_workshop_13 = $mol_type_enforce<
+		ReturnType< $bog_atelier_workshop['stamp_id'] >
+		,
+		ReturnType< $bog_atelier_icon['entry_id'] >
+	>
+	type $mol_button_minor__title_bog_atelier_workshop_14 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_atelier_workshop_14 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_atelier_workshop_15 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['undo'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__enabled_bog_atelier_workshop_15 = $mol_type_enforce<
+	type $mol_button_minor__enabled_bog_atelier_workshop_16 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['can_undo'] >
 		,
 		ReturnType< $mol_button_minor['enabled'] >
 	>
-	type $mol_button_minor__title_bog_atelier_workshop_16 = $mol_type_enforce<
+	type $mol_button_minor__title_bog_atelier_workshop_17 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_atelier_workshop_17 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_atelier_workshop_18 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['clear'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__enabled_bog_atelier_workshop_18 = $mol_type_enforce<
+	type $mol_button_minor__enabled_bog_atelier_workshop_19 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['can_undo'] >
 		,
 		ReturnType< $mol_button_minor['enabled'] >
 	>
-	type $mol_button_major__title_bog_atelier_workshop_19 = $mol_type_enforce<
+	type $mol_button_major__title_bog_atelier_workshop_20 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_major['title'] >
 	>
-	type $mol_button_major__click_bog_atelier_workshop_20 = $mol_type_enforce<
+	type $mol_button_major__click_bog_atelier_workshop_21 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['break'] >
 		,
 		ReturnType< $mol_button_major['click'] >
 	>
-	type $mol_button_minor__title_bog_atelier_workshop_21 = $mol_type_enforce<
+	type $mol_button_copy__title_bog_atelier_workshop_22 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_copy['title'] >
+	>
+	type $mol_button_copy__hint_bog_atelier_workshop_23 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_copy['hint'] >
+	>
+	type $mol_button_copy__text_bog_atelier_workshop_24 = $mol_type_enforce<
+		ReturnType< $bog_atelier_workshop['share_link'] >
+		,
+		ReturnType< $mol_button_copy['text'] >
+	>
+	type $mol_button_minor__title_bog_atelier_workshop_25 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_atelier_workshop_22 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_atelier_workshop_26 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['stamp_ring'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_paragraph__title_bog_atelier_workshop_23 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_atelier_workshop_27 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['story_line'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_button_minor__hint_bog_atelier_workshop_24 = $mol_type_enforce<
+	type $mol_button_minor__hint_bog_atelier_workshop_28 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['stamp_title'] >
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__click_bog_atelier_workshop_25 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_atelier_workshop_29 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['stamp_sigil'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_atelier_workshop_26 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_atelier_workshop_30 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_button_minor__hint_bog_atelier_workshop_27 = $mol_type_enforce<
+	type $mol_button_minor__hint_bog_atelier_workshop_31 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['stamp_title'] >
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__click_bog_atelier_workshop_28 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_atelier_workshop_32 = $mol_type_enforce<
 		ReturnType< $bog_atelier_workshop['stamp_sign'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_atelier_workshop_29 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_atelier_workshop_33 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
 	export class $bog_atelier_workshop extends $mol_view {
 		lines( next?: readonly(any)[] ): readonly(any)[]
+		guide( ): readonly(any)[]
 		cast_key( ): number
 		Stage( ): $bog_atelier_stage
 		status( ): string
@@ -5855,6 +5959,7 @@ declare namespace $ {
 		can_undo( ): boolean
 		clear( next?: any ): any
 		break( next?: any ): any
+		share_link( ): string
 		stamp_ring( next?: any ): any
 		story_line( id: any): string
 		stamp_title( id: any): string
@@ -5870,6 +5975,7 @@ declare namespace $ {
 		Undo( ): $mol_button_minor
 		Clear( ): $mol_button_minor
 		Break( ): $mol_button_major
+		Share( ): $mol_button_copy
 		Ring( ): $mol_button_minor
 		Story_line( id: any): $mol_paragraph
 		Sigil_stamp( id: any): $mol_button_minor
@@ -5882,6 +5988,9 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_atelier_workshop extends $.$bog_atelier_workshop {
         lines(next?: readonly $bog_atelier_ink_line[]): readonly $bog_atelier_ink_line[];
+        auto(): void;
+        guide(): number[][];
+        share_link(): string;
         reading(): $bog_atelier_glyph_reading;
         closed(): boolean;
         cast_key(): number;
@@ -5889,7 +5998,7 @@ declare namespace $.$$ {
         undo(): void;
         clear(): void;
         break(): void;
-        tools(): $mol_button_minor[];
+        tools(): ($mol_button_minor | $.$mol_button_copy)[];
         status(): string;
         story(): string[];
         story_rows(): $.$mol_paragraph[];
@@ -6304,82 +6413,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $.$$ {
-}
-
-declare namespace $ {
-    type $mol_blob = Blob;
-    let $mol_blob: {
-        prototype: Blob;
-        new (blobParts?: readonly BlobPart[], options?: BlobPropertyBag): Blob;
-    };
-}
-
-declare namespace $ {
-
-	export class $mol_icon_clipboard extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=clipboard.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_clipboard_outline extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=outline.view.tree.d.ts.map
-declare namespace $ {
-    function $mol_html_encode(text: string): string;
-}
-
-declare namespace $ {
-
-	type $mol_blob__mol_button_copy_1 = $mol_type_enforce<
-		[ readonly(BlobPart)[], ({ 
-			'type': string,
-		})  ]
-		,
-		ConstructorParameters< typeof $mol_blob >
-	>
-	type $mol_blob__mol_button_copy_2 = $mol_type_enforce<
-		[ readonly(BlobPart)[], ({ 
-			'type': string,
-		})  ]
-		,
-		ConstructorParameters< typeof $mol_blob >
-	>
-	export class $mol_button_copy extends $mol_button_minor {
-		text( ): ReturnType< $mol_button_copy['title'] >
-		text_blob( next?: $mol_blob ): $mol_blob
-		html( ): string
-		html_blob( next?: $mol_blob ): $mol_blob
-		Icon( ): $mol_icon_clipboard_outline
-		title( ): string
-		blobs( ): readonly($mol_blob)[]
-		data( ): Record<string, any>
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=copy.view.tree.d.ts.map
-declare namespace $.$$ {
-    /**
-     * Button copy text() value to clipboard
-     * @see https://mol.hyoo.ru/#!section=demos/demo=mol_button_demo
-     */
-    class $mol_button_copy extends $.$mol_button_copy {
-        data(): {
-            [k: string]: Blob;
-        };
-        html(): string;
-        attachments(): ClipboardItem[];
-        click(event?: Event): void;
-    }
 }
 
 declare namespace $ {

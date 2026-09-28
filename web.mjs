@@ -7124,7 +7124,7 @@ var $;
         if (line.length < 2)
             return '';
         const r = (v) => Math.round(v * 1000) / 1000;
-        if ($bog_atelier_ink_length(line) / (line.length / 2 - 1) > 0.03)
+        if (line.length <= 24)
             return $bog_atelier_ink_poly(line);
         if (line.length < 6) {
             return `M${r(line[0])} ${r(line[1])}L${r(line[line.length - 2])} ${r(line[line.length - 1])}`;
@@ -17264,7 +17264,7 @@ var $;
     $.$bog_atelier_glyph_sign = $bog_atelier_glyph_sign;
     function $bog_atelier_glyph_circle(gap = 0, gap_at = -Math.PI / 2, r = 1) {
         const from = gap_at + gap / 2;
-        return $bog_atelier_ink_arc(0, 0, r, from, from + Math.PI * 2 - gap, 120);
+        return $bog_atelier_ink_arc(0, 0, r, from, from + Math.PI * 2 - gap, 240);
     }
     $.$bog_atelier_glyph_circle = $bog_atelier_glyph_circle;
     function $bog_atelier_glyph_read(lines) {
@@ -18754,9 +18754,150 @@ var $;
 
 
 ;
+"use strict";
+
+;
+"use strict";
+// @ts-ignore
+var $node = $node || {};
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_blob = ($node.buffer?.Blob ?? $mol_dom_context.Blob);
+})($ || ($ = {}));
+
+;
+	($.$mol_icon_clipboard) = class $mol_icon_clipboard extends ($.$mol_icon) {
+		path(){
+			return "M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_clipboard_outline) = class $mol_icon_clipboard_outline extends ($.$mol_icon) {
+		path(){
+			return "M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M7,7H17V5H19V19H5V5H7V7Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_button_copy) = class $mol_button_copy extends ($.$mol_button_minor) {
+		text(){
+			return (this.title());
+		}
+		text_blob(next){
+			if(next !== undefined) return next;
+			const obj = new this.$.$mol_blob([(this.text())], {"type": "text/plain"});
+			return obj;
+		}
+		html(){
+			return "";
+		}
+		html_blob(next){
+			if(next !== undefined) return next;
+			const obj = new this.$.$mol_blob([(this.html())], {"type": "text/html"});
+			return obj;
+		}
+		Icon(){
+			const obj = new this.$.$mol_icon_clipboard_outline();
+			return obj;
+		}
+		title(){
+			return "";
+		}
+		blobs(){
+			return [(this.text_blob()), (this.html_blob())];
+		}
+		data(){
+			return {};
+		}
+		sub(){
+			return [(this.Icon()), (this.title())];
+		}
+	};
+	($mol_mem(($.$mol_button_copy.prototype), "text_blob"));
+	($mol_mem(($.$mol_button_copy.prototype), "html_blob"));
+	($mol_mem(($.$mol_button_copy.prototype), "Icon"));
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    const mapping = {
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        '&': '&amp;',
+    };
+    function $mol_html_encode(text) {
+        return text.replace(/[&<">]/gi, str => mapping[str]);
+    }
+    $.$mol_html_encode = $mol_html_encode;
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Button copy text() value to clipboard
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_button_demo
+         */
+        class $mol_button_copy extends $.$mol_button_copy {
+            data() {
+                return Object.fromEntries(this.blobs().map(blob => [blob.type, blob]));
+            }
+            html() {
+                return $mol_html_encode(this.text());
+            }
+            attachments() {
+                return [new ClipboardItem(this.data())];
+            }
+            click(event) {
+                const cb = $mol_wire_sync(this.$.$mol_dom_context.navigator.clipboard);
+                cb.writeText?.(this.text());
+                cb.write?.(this.attachments());
+                if (cb.writeText === undefined && cb.write === undefined) {
+                    throw new Error("doesn't support copy to clipoard");
+                }
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_button_copy.prototype, "html", null);
+        __decorate([
+            $mol_mem
+        ], $mol_button_copy.prototype, "attachments", null);
+        $$.$mol_button_copy = $mol_button_copy;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
 	($.$bog_atelier_workshop) = class $bog_atelier_workshop extends ($.$mol_view) {
 		lines(next){
 			if(next !== undefined) return next;
+			return [];
+		}
+		guide(){
 			return [];
 		}
 		cast_key(){
@@ -18765,6 +18906,7 @@ var $;
 		Stage(){
 			const obj = new this.$.$bog_atelier_stage();
 			(obj.lines) = (next) => ((this.lines(next)));
+			(obj.guide) = () => ((this.guide()));
 			(obj.cast_key) = () => ((this.cast_key()));
 			return obj;
 		}
@@ -18846,6 +18988,9 @@ var $;
 			if(next !== undefined) return next;
 			return null;
 		}
+		share_link(){
+			return "";
+		}
 		stamp_ring(next){
 			if(next !== undefined) return next;
 			return null;
@@ -18909,6 +19054,13 @@ var $;
 			(obj.click) = (next) => ((this.break(next)));
 			return obj;
 		}
+		Share(){
+			const obj = new this.$.$mol_button_copy();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_atelier_workshop_Share_title")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_atelier_workshop_Share_hint")));
+			(obj.text) = () => ((this.share_link()));
+			return obj;
+		}
 		Ring(){
 			const obj = new this.$.$mol_button_minor();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_atelier_workshop_Ring_title")));
@@ -18956,11 +19108,120 @@ var $;
 	($mol_mem(($.$bog_atelier_workshop.prototype), "Undo"));
 	($mol_mem(($.$bog_atelier_workshop.prototype), "Clear"));
 	($mol_mem(($.$bog_atelier_workshop.prototype), "Break"));
+	($mol_mem(($.$bog_atelier_workshop.prototype), "Share"));
 	($mol_mem(($.$bog_atelier_workshop.prototype), "Ring"));
 	($mol_mem_key(($.$bog_atelier_workshop.prototype), "Story_line"));
 	($mol_mem_key(($.$bog_atelier_workshop.prototype), "Sigil_stamp"));
 	($mol_mem_key(($.$bog_atelier_workshop.prototype), "Sign_stamp"));
 
+
+;
+"use strict";
+var $;
+(function ($) {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+    const step = 1 / 200;
+    function put(out, value) {
+        let rest = value < 0 ? -value * 2 - 1 : value * 2;
+        do {
+            const chunk = rest & 31;
+            rest = Math.floor(rest / 32);
+            out.push(alphabet[chunk | (rest ? 32 : 0)]);
+        } while (rest);
+    }
+    function $bog_atelier_share_pack(lines) {
+        const out = [];
+        put(out, lines.length);
+        for (const line of lines) {
+            const points = line.length / 2;
+            put(out, points);
+            let px = 0;
+            let py = 0;
+            for (let i = 0; i < line.length; i += 2) {
+                const x = Math.round(line[i] / step);
+                const y = Math.round(line[i + 1] / step);
+                put(out, x - px);
+                put(out, y - py);
+                px = x;
+                py = y;
+            }
+        }
+        return out.join('');
+    }
+    $.$bog_atelier_share_pack = $bog_atelier_share_pack;
+    function $bog_atelier_share_unpack(text) {
+        let at = 0;
+        const take = () => {
+            let value = 0;
+            let scale = 1;
+            while (true) {
+                if (at >= text.length)
+                    throw new Error('Glyph code is cut');
+                const code = alphabet.indexOf(text[at++]);
+                if (code < 0)
+                    throw new Error('Glyph code has a stray letter');
+                value += (code & 31) * scale;
+                scale *= 32;
+                if (!(code & 32))
+                    break;
+            }
+            return value % 2 ? -(value + 1) / 2 : value / 2;
+        };
+        const lines = [];
+        const count = take();
+        for (let k = 0; k < count; ++k) {
+            const points = take();
+            const line = [];
+            let x = 0;
+            let y = 0;
+            for (let i = 0; i < points; ++i) {
+                x += take();
+                y += take();
+                line.push(x * step, y * step);
+            }
+            lines.push(line);
+        }
+        return lines;
+    }
+    $.$bog_atelier_share_unpack = $bog_atelier_share_unpack;
+    function $bog_atelier_share_thin(line, gap = 0.012) {
+        const out = [line[0], line[1]];
+        for (let i = 2; i < line.length - 2; i += 2) {
+            const x = out[out.length - 2];
+            const y = out[out.length - 1];
+            if (Math.hypot(line[i] - x, line[i + 1] - y) >= gap)
+                out.push(line[i], line[i + 1]);
+        }
+        if (line.length >= 4)
+            out.push(line[line.length - 2], line[line.length - 1]);
+        return out;
+    }
+    $.$bog_atelier_share_thin = $bog_atelier_share_thin;
+    function $bog_atelier_share_open(lines, ring, cx, cy, at = -Math.PI / 2, width = 0.3) {
+        const out = [];
+        lines.forEach((line, index) => {
+            if (!ring.includes(index))
+                return out.push([...line]);
+            let piece = [];
+            for (let i = 0; i < line.length; i += 2) {
+                const a = Math.atan2(line[i + 1] - cy, line[i] - cx);
+                const off = Math.abs(Math.atan2(Math.sin(a - at), Math.cos(a - at)));
+                if (off < width / 2) {
+                    if (piece.length >= 4)
+                        out.push(piece);
+                    piece = [];
+                }
+                else {
+                    piece.push(line[i], line[i + 1]);
+                }
+            }
+            if (piece.length >= 4)
+                out.push(piece);
+        });
+        return out;
+    }
+    $.$bog_atelier_share_open = $bog_atelier_share_open;
+})($ || ($ = {}));
 
 ;
 "use strict";
@@ -18975,6 +19236,28 @@ var $;
         class $bog_atelier_workshop extends $.$bog_atelier_workshop {
             lines(next) {
                 return this.$.$mol_state_local.value('bog_atelier_sheet', next) ?? [];
+            }
+            auto() {
+                const code = this.$.$mol_state_arg.value('glyph');
+                if (!code)
+                    return;
+                this.$.$mol_state_arg.value('glyph', null);
+                this.lines($bog_atelier_share_unpack(code));
+            }
+            guide() {
+                return this.lines().length ? [] : [$bog_atelier_glyph_circle(0, 0, 0.95)];
+            }
+            share_link() {
+                const reading = this.reading();
+                const ring = reading.ring;
+                if (!ring)
+                    return '';
+                const lines = reading.closed
+                    ? $bog_atelier_share_open(this.lines(), reading.ring_lines, ring.x, ring.y)
+                    : this.lines();
+                const code = $bog_atelier_share_pack(lines.map(line => $bog_atelier_share_thin(line)));
+                const here = this.$.$mol_dom_context.location;
+                return `${here.origin}${here.pathname}#!screen=sheet/glyph=${code}`;
             }
             reading() {
                 return this.Stage().reading();
@@ -19004,9 +19287,10 @@ var $;
                 this.lines(lines.filter((_, i) => i !== last));
             }
             tools() {
+                const share = this.reading().ring ? [this.Share()] : [];
                 return this.closed()
-                    ? [this.Break(), this.Undo(), this.Clear()]
-                    : [this.Ring(), this.Undo(), this.Clear()];
+                    ? [this.Break(), ...share, this.Undo(), this.Clear()]
+                    : [this.Ring(), ...share, this.Undo(), this.Clear()];
             }
             status() {
                 const reading = this.reading();
@@ -19086,6 +19370,12 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_atelier_workshop.prototype, "lines", null);
+        __decorate([
+            $mol_mem
+        ], $bog_atelier_workshop.prototype, "guide", null);
+        __decorate([
+            $mol_mem
+        ], $bog_atelier_workshop.prototype, "share_link", null);
         __decorate([
             $mol_mem
         ], $bog_atelier_workshop.prototype, "cast_key", null);
@@ -19929,144 +20219,6 @@ var $;
                 position: 'absolute',
             },
         });
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-
-;
-"use strict";
-// @ts-ignore
-var $node = $node || {};
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_blob = ($node.buffer?.Blob ?? $mol_dom_context.Blob);
-})($ || ($ = {}));
-
-;
-	($.$mol_icon_clipboard) = class $mol_icon_clipboard extends ($.$mol_icon) {
-		path(){
-			return "M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3";
-		}
-	};
-
-
-;
-"use strict";
-
-
-;
-	($.$mol_icon_clipboard_outline) = class $mol_icon_clipboard_outline extends ($.$mol_icon) {
-		path(){
-			return "M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M7,7H17V5H19V19H5V5H7V7Z";
-		}
-	};
-
-
-;
-"use strict";
-
-
-;
-	($.$mol_button_copy) = class $mol_button_copy extends ($.$mol_button_minor) {
-		text(){
-			return (this.title());
-		}
-		text_blob(next){
-			if(next !== undefined) return next;
-			const obj = new this.$.$mol_blob([(this.text())], {"type": "text/plain"});
-			return obj;
-		}
-		html(){
-			return "";
-		}
-		html_blob(next){
-			if(next !== undefined) return next;
-			const obj = new this.$.$mol_blob([(this.html())], {"type": "text/html"});
-			return obj;
-		}
-		Icon(){
-			const obj = new this.$.$mol_icon_clipboard_outline();
-			return obj;
-		}
-		title(){
-			return "";
-		}
-		blobs(){
-			return [(this.text_blob()), (this.html_blob())];
-		}
-		data(){
-			return {};
-		}
-		sub(){
-			return [(this.Icon()), (this.title())];
-		}
-	};
-	($mol_mem(($.$mol_button_copy.prototype), "text_blob"));
-	($mol_mem(($.$mol_button_copy.prototype), "html_blob"));
-	($mol_mem(($.$mol_button_copy.prototype), "Icon"));
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    const mapping = {
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        '&': '&amp;',
-    };
-    function $mol_html_encode(text) {
-        return text.replace(/[&<">]/gi, str => mapping[str]);
-    }
-    $.$mol_html_encode = $mol_html_encode;
-})($ || ($ = {}));
-
-;
-"use strict";
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        /**
-         * Button copy text() value to clipboard
-         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_button_demo
-         */
-        class $mol_button_copy extends $.$mol_button_copy {
-            data() {
-                return Object.fromEntries(this.blobs().map(blob => [blob.type, blob]));
-            }
-            html() {
-                return $mol_html_encode(this.text());
-            }
-            attachments() {
-                return [new ClipboardItem(this.data())];
-            }
-            click(event) {
-                const cb = $mol_wire_sync(this.$.$mol_dom_context.navigator.clipboard);
-                cb.writeText?.(this.text());
-                cb.write?.(this.attachments());
-                if (cb.writeText === undefined && cb.write === undefined) {
-                    throw new Error("doesn't support copy to clipoard");
-                }
-            }
-        }
-        __decorate([
-            $mol_mem
-        ], $mol_button_copy.prototype, "html", null);
-        __decorate([
-            $mol_mem
-        ], $mol_button_copy.prototype, "attachments", null);
-        $$.$mol_button_copy = $mol_button_copy;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 
